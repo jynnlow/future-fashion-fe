@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:future/pages/home/home.dart';
+import 'package:future/pages/home/main_clothes_page.dart';
 
 class CartAppBar extends StatelessWidget {
   const CartAppBar({Key? key}) : super(key: key);
@@ -41,8 +41,8 @@ class CartAppBar extends StatelessWidget {
               ),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => HomePage()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => MainClothesPage()));
                 },
                 child: const Icon(
                   Icons.home_outlined,

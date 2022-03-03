@@ -10,15 +10,18 @@ class CartController extends GetxController {
   Map<String, CartModel> _cartItems = {};
   Map<String, CartModel> get cartItems => _cartItems;
 
+  /* This is for the cart model that retrieve from the local storage and sharePreference*/
+  List<CartModel> storageCartItem = [];
+
   void addItem(ProductModel product, int quantity, String sizing) {
-    String _cartId = product.id!.toString() + ':' + sizing;
+    String _cartId = product.ID!.toString() + ':' + sizing;
     var totalQuantity = 0;
 
     if (_cartItems.containsKey(_cartId)) {
       _cartItems.update(_cartId, (value) {
         totalQuantity = value.quantity! + quantity;
         return CartModel(
-          id: value.id,
+          id: _cartId,
           item: value.item,
           price: value.price,
           picture: value.picture,
@@ -39,7 +42,7 @@ class CartController extends GetxController {
           _cartId,
           () {
             return CartModel(
-              id: product.id,
+              id: _cartId,
               item: product.item,
               price: product.price,
               picture: product.picture,
@@ -54,6 +57,8 @@ class CartController extends GetxController {
       }
     }
     update();
+    // add the cart model to the local storage - in cart repo
+    cartRepo.addToCartList(getCartList);
   }
 
   int get totalItems {
@@ -76,5 +81,26 @@ class CartController extends GetxController {
       totalAmount += (value.quantity! * value.price!);
     });
     return totalAmount;
+  }
+
+  List<CartModel> getCartListFromLocalStorage() {
+    storageCartItem = cartRepo.getCartList();
+
+    storageCartItem.forEach((element) {
+      String uniqueID = element.id!;
+      _cartItems.addAll({uniqueID: element});
+    });
+
+    return storageCartItem;
+  }
+
+  set setCart(List<CartModel> items) {
+    storageCartItem = items;
+    // for (int i = 0; i < storageCartItem.length; i++) {
+    //   String _cartId = storageCartItem[i].product!.ID!.toString() +
+    //       ':' +
+    //       storageCartItem[i].sizing!;
+    //   _cartItems.putIfAbsent(_cartId, () => storageCartItem[i]);
+    // }
   }
 }

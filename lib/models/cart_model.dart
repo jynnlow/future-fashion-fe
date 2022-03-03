@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:future/models/product_model.dart';
 
 class CartModel {
-  int? id;
+  String? id;
   String? item;
   int? price;
   List<String>? picture;
@@ -42,7 +42,22 @@ class CartModel {
     quantity = json['quantity'];
     isExist = json['isExist'];
     createdTime = json['creatTime'];
-    product = ProductModel.fromJson(json[product]);
+    product = ProductModel.fromJson(json['product']);
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> jsonMap = new Map<String, dynamic>();
+    jsonMap["id"] = this.id;
+    jsonMap["item"] = this.item;
+    jsonMap["price"] = this.price;
+    jsonMap["picture"] = jsonEncode(this.picture);
+    jsonMap["sizing"] = this.sizing;
+    jsonMap["quantity"] = this.quantity;
+    jsonMap["isExist"] = this.isExist;
+    jsonMap["createdTime"] = this.createdTime;
+    jsonMap["product"] = this.product!.toJson();
+
+    return jsonMap;
   }
 }
 

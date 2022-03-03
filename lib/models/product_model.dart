@@ -19,7 +19,7 @@ class Product {
 }
 
 class ProductModel {
-  int? id;
+  int? ID;
   String? item;
   int? price;
   int? stock;
@@ -31,7 +31,7 @@ class ProductModel {
   Sizing? xl;
 
   ProductModel(
-      {this.id,
+      {this.ID,
       this.item,
       this.price,
       this.stock,
@@ -43,10 +43,9 @@ class ProductModel {
       this.xl});
 
   ProductModel.fromJson(Map<String, dynamic> json) {
-    id = json['ID'];
+    ID = json['ID'];
     item = json['item'];
     price = json['price'];
-    stock = json['stock'];
     if (json['picture'] != '') {
       var jsonData = jsonDecode(json['picture']);
       picture = <String>[];
@@ -56,11 +55,38 @@ class ProductModel {
     } else {
       picture = null;
     }
+    stock = json['stock'];
     xs = json['xs'] != null ? Sizing.fromJson(json['xs']) : null;
     s = json['s'] != null ? Sizing.fromJson(json['s']) : null;
     m = json['m'] != null ? Sizing.fromJson(json['m']) : null;
     l = json['l'] != null ? Sizing.fromJson(json['l']) : null;
     xl = json['xl'] != null ? Sizing.fromJson(json['xl']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> jsonMap = new Map<String, dynamic>();
+
+    jsonMap["ID"] = this.ID;
+    jsonMap["item"] = this.item;
+    jsonMap["price"] = this.price;
+    jsonMap["picture"] = jsonEncode(this.picture);
+    jsonMap["stock"] = this.stock;
+    if (this.xs != null) {
+      jsonMap['xs'] = jsonEncode(this.xs!.toJson());
+    }
+    if (this.s != null) {
+      jsonMap['s'] = jsonEncode(this.s!.toJson());
+    }
+    if (this.m != null) {
+      jsonMap['m'] = jsonEncode(this.m!.toJson());
+    }
+    if (this.l != null) {
+      jsonMap['l'] = jsonEncode(this.l!.toJson());
+    }
+    if (this.xl != null) {
+      jsonMap['xl'] = jsonEncode(this.xl!.toJson());
+    }
+    return jsonMap;
   }
 }
 
@@ -79,5 +105,13 @@ class Sizing {
       waist = sizing['waist'];
       hip = sizing['hip'];
     }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> jsonMap = new Map<String, dynamic>();
+    jsonMap['chest'] = this.chest;
+    jsonMap['waist'] = this.waist;
+    jsonMap['hip'] = this.hip;
+    return jsonMap;
   }
 }

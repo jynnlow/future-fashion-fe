@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:future/controllers/cart_controller.dart';
 import 'package:future/controllers/product_controller.dart';
-import 'package:future/pages/cart/cart.dart';
-import 'package:future/pages/home/home.dart';
+import 'package:future/pages/home/home_page.dart';
 import 'package:future/helper/dependencies.dart' as dep;
 import 'package:get/get.dart';
 
@@ -19,7 +19,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.find<CartController>().getCartListFromLocalStorage();
     Get.find<ProductController>().getProductList();
+
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.white,
     ));
