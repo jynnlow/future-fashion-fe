@@ -12,10 +12,11 @@ class CartController extends GetxController {
 
   /* This is for the cart model that retrieve from the local storage and sharePreference*/
   List<CartModel> storageCartItem = [];
+  var totalQuantity = 0;
 
   void addItem(ProductModel product, int quantity, String sizing) {
+    totalQuantity = 0;
     String _cartId = product.ID!.toString() + ':' + sizing;
-    var totalQuantity = 0;
 
     if (_cartItems.containsKey(_cartId)) {
       _cartItems.update(_cartId, (value) {
@@ -62,7 +63,8 @@ class CartController extends GetxController {
   }
 
   int get totalItems {
-    var totalQuantity = 0;
+    totalQuantity = 0;
+
     _cartItems.forEach((key, value) {
       totalQuantity += value.quantity!;
     });
@@ -86,6 +88,9 @@ class CartController extends GetxController {
   List<CartModel> getCartListFromLocalStorage() {
     storageCartItem = cartRepo.getCartList();
 
+    // for (int i = 0; i < storageCartItem.length; i++) {
+    //   _cartItems.putIfAbsent(storageCartItem[i].id!, () => storageCartItem[i]);
+    // }
     storageCartItem.forEach((element) {
       String uniqueID = element.id!;
       _cartItems.addAll({uniqueID: element});

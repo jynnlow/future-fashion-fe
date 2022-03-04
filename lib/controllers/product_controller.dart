@@ -93,6 +93,7 @@ class ProductController extends GetxController {
   }
 
   int get totalItems {
+    // update();
     return _cartController.totalItems;
   }
 

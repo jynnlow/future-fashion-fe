@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:future/ar_fitting_room.dart';
 import 'package:future/controllers/cart_controller.dart';
+import 'package:future/controllers/favourite_controller.dart';
 import 'package:future/controllers/product_controller.dart';
 import 'package:future/pages/home/home_page.dart';
 import 'package:future/helper/dependencies.dart' as dep;
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.find<CartController>().getCartListFromLocalStorage();
-    Get.find<ProductController>().getProductList();
+    Get.find<FavouriteController>().getFavouriteList();
 
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.white,

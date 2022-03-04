@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:future/controllers/favourite_controller.dart';
 import 'package:future/models/product_model.dart';
+import 'package:get/get.dart';
 
 class ClothesInfo extends StatelessWidget {
   final ProductModel clothes;
@@ -7,6 +9,7 @@ class ClothesInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get.find<FavouriteController>().initFavourite();
     return Container(
       padding: const EdgeInsets.only(left: 25, right: 25, top: 15, bottom: 5),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -17,14 +20,20 @@ class ClothesInfo extends StatelessWidget {
               '${clothes.item}',
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
             ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.9), shape: BoxShape.circle),
-              child: const Icon(
-                Icons.favorite,
-                color: Colors.red,
-                size: 15,
+            GestureDetector(
+              onTap: () {
+                Get.find<FavouriteController>().addItemToFavourite(clothes);
+              },
+              child: Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.9),
+                    shape: BoxShape.circle),
+                child: const Icon(
+                  Icons.favorite,
+                  color: Colors.red,
+                  size: 15,
+                ),
               ),
             )
           ],

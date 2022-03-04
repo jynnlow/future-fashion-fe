@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:future/controllers/product_controller.dart';
+import 'package:future/pages/favourite/favourite.dart';
 import 'package:future/pages/home/main_clothes_page.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -13,9 +16,7 @@ class _HomePageState extends State<HomePage> {
 
   List pages = [
     const MainClothesPage(),
-    Container(
-      child: Center(child: Text("Favourite")),
-    ),
+    const FavouritePage(),
     Container(
       child: Center(child: Text("Order")),
     ),
@@ -32,6 +33,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    Get.find<ProductController>().getProductList();
+
     return Scaffold(
       body: pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(

@@ -5,14 +5,9 @@ import 'package:future/pages/cart/cart.dart';
 import 'package:future/pages/cart/widget/cart_list.dart';
 import 'package:get/get.dart';
 
-class HomeAppBar extends StatefulWidget {
+class HomeAppBar extends StatelessWidget {
   const HomeAppBar({Key? key}) : super(key: key);
 
-  @override
-  State<HomeAppBar> createState() => _HomeAppBarState();
-}
-
-class _HomeAppBarState extends State<HomeAppBar> {
   @override
   Widget build(BuildContext context) {
     Get.find<ProductController>().initProduct(Get.find<CartController>());
@@ -84,7 +79,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
                       right: 6,
                       top: 4,
                       child: Text(
-                        Get.find<ProductController>().totalItems.toString(),
+                        products.totalItems.toString(),
                         style:
                             const TextStyle(fontSize: 12, color: Colors.white),
                       ),
