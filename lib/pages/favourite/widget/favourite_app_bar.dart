@@ -11,7 +11,7 @@ class FavouriteAppBar extends StatelessWidget {
       child: const Text(
         "Favourite List",
         style: TextStyle(
-          color: Colors.pink,
+          color: Colors.black,
           fontSize: 22,
           fontWeight: FontWeight.bold,
         ),

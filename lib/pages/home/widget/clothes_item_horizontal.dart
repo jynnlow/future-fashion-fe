@@ -38,7 +38,7 @@ class ClothesItemHorizontal extends StatelessWidget {
                 ),
                 Positioned(
                   right: 20,
-                  top: 15,
+                  top: 10,
                   child: Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(

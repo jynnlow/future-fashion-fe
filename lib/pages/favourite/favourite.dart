@@ -12,10 +12,21 @@ class FavouritePage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const FavouriteAppBar(),
-              // FavouriteList(),
+            children: const [
+              FavouriteList(),
             ],
+          ),
+        ),
+      ),
+      appBar: AppBar(
+        backgroundColor: Colors.pink,
+        // centerTitle: false,
+        title: const Text(
+          "Favourite List",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),

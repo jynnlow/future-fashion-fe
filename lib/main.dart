@@ -6,6 +6,7 @@ import 'package:future/controllers/favourite_controller.dart';
 import 'package:future/controllers/product_controller.dart';
 import 'package:future/pages/home/home_page.dart';
 import 'package:future/helper/dependencies.dart' as dep;
+import 'package:future/pages/splash/splash_page.dart';
 import 'package:get/get.dart';
 
 void main() async {
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
     return const GetMaterialApp(
       title: 'Future Fashion App',
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: SplashScreen(),
     );
   }
 }

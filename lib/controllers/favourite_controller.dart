@@ -29,7 +29,6 @@ class FavouriteController extends GetxController {
             backgroundColor: Colors.pink,
             colorText: Colors.white,
           );
-          print(_favouriteList.length);
         }
       }
     } else {
@@ -40,14 +39,16 @@ class FavouriteController extends GetxController {
         backgroundColor: Colors.pink,
         colorText: Colors.white,
       );
-      print(_favouriteList.length);
     }
+    update();
     favouriteRepo.addToFavouriteList(favouriteList);
   }
 
+  //get favourite list when restart
   List<ProductModel> getFavouriteList() {
     _favouriteList = favouriteRepo.getFavouriteList();
-    print(_favouriteList.length);
+    print("Restart here! The length of favourite list is " +
+        _favouriteList.length.toString());
     return _favouriteList;
   }
 
