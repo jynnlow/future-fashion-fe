@@ -3,6 +3,7 @@ import 'package:future/controllers/product_controller.dart';
 import 'package:future/pages/favourite/favourite.dart';
 import 'package:future/pages/home/main_clothes_page.dart';
 import 'package:future/pages/profile/profile_page.dart';
+import 'package:future/pages/signin/sign_in.dart';
 import 'package:future/pages/signup/sign_up.dart';
 import 'package:get/get.dart';
 
@@ -19,7 +20,7 @@ class _HomePageState extends State<HomePage> {
   List pages = [
     const MainClothesPage(),
     const FavouritePage(),
-    SingUpPage(),
+    SignInPage(),
     // Container(
     //   child: Center(child: Text("Order")),
     // ),

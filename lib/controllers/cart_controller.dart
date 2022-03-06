@@ -98,14 +98,4 @@ class CartController extends GetxController {
 
     return storageCartItem;
   }
-
-  set setCart(List<CartModel> items) {
-    storageCartItem = items;
-    // for (int i = 0; i < storageCartItem.length; i++) {
-    //   String _cartId = storageCartItem[i].product!.ID!.toString() +
-    //       ':' +
-    //       storageCartItem[i].sizing!;
-    //   _cartItems.putIfAbsent(_cartId, () => storageCartItem[i]);
-    // }
-  }
 }
