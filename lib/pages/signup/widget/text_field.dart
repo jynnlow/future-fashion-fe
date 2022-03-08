@@ -4,12 +4,14 @@ class SignUpTextField extends StatelessWidget {
   final TextEditingController textController;
   final String hintText;
   final IconData icon;
+  bool isObscure;
 
-  const SignUpTextField(
+  SignUpTextField(
       {Key? key,
       required this.textController,
       required this.hintText,
-      required this.icon})
+      required this.icon,
+      this.isObscure = false})
       : super(key: key);
 
   @override
@@ -17,6 +19,7 @@ class SignUpTextField extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(left: 30, right: 30),
       child: TextField(
+        obscureText: isObscure ? true : false,
         autofocus: true,
         controller: textController,
         decoration: InputDecoration(

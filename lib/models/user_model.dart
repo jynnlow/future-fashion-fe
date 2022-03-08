@@ -2,13 +2,20 @@ class UserModel {
   String username;
   String password;
   String dob;
-  String role = "";
-  int chest = 0;
-  int waist = 0;
-  int hip = 0;
+  String role;
+  int chest;
+  int waist;
+  int hip;
 
-  UserModel(
-      {required this.username, required this.password, required this.dob});
+  UserModel({
+    required this.username,
+    required this.password,
+    this.dob = "",
+    this.role = "",
+    this.chest = 0,
+    this.waist = 0,
+    this.hip = 0,
+  });
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> jsonData = new Map<String, dynamic>();
@@ -20,5 +27,17 @@ class UserModel {
     jsonData["waist"] = this.waist;
     jsonData["hip"] = this.hip;
     return jsonData;
+  }
+
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      username: json["username"],
+      password: json["password"],
+      dob: json["dob"],
+      role: json["role"],
+      chest: json["chest"],
+      waist: json["waist"],
+      hip: json["hip"],
+    );
   }
 }

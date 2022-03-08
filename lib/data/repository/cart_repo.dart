@@ -46,4 +46,13 @@ class CartRepo {
     });
     return cartList;
   }
+
+  void removeCart() {
+    cart = [];
+    sharedPreferences.remove(Constants.CART_LIST);
+  }
+
+  void clearSharedPreference() {
+    removeCart();
+  }
 }

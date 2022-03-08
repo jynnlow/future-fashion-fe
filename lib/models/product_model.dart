@@ -16,6 +16,13 @@ class Product {
       });
     }
   }
+
+  // Map<String, dynamic> toJson() {
+  //   final Map<String, dynamic> jsonMap = new Map<String, dynamic>();
+  //   if(_products.length > 0){
+
+  //   }
+  // }
 }
 
 class ProductModel {

@@ -20,10 +20,10 @@ class _HomePageState extends State<HomePage> {
   List pages = [
     const MainClothesPage(),
     const FavouritePage(),
-    SignInPage(),
-    // Container(
-    //   child: Center(child: Text("Order")),
-    // ),
+    // SignInPage(),
+    Container(
+      child: Center(child: Text("Order")),
+    ),
     ProfilePage(),
   ];
 

@@ -4,9 +4,10 @@ class Constants {
   static const String BASE_URL = "http://127.0.0.1:8080";
   static const String GET_PRODUCT_LIST = "/product/list-products";
   static const String SIGN_UP = "/user/signup";
+  static const String SIGN_IN = "/user/login";
+  static const String GET_PERSONAL_INFO = "/user/personal-info";
 
-  static const String TOKEN =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6MSwiVXNlcm5hbWUiOiJBZG1pbjEiLCJSb2xlIjoiYWRtaW4iLCJleHAiOjE2NDU4NzQ2MDl9.-l7KMBRgJ8YF-BDJEPUontEAriSFZt_S-XDTLNsoc_s";
+  static const String TOKEN = "";
   static const String CART_LIST = "cart-list";
   static const String FAVOURITE_LIST = "favourite- ist";
 }

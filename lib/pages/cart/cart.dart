@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:future/controllers/cart_controller.dart';
+import 'package:future/controllers/user_controller.dart';
+import 'package:future/pages/signin/sign_in.dart';
 import 'package:get/get.dart';
 
 import 'widget/cart_app_bar.dart';
@@ -74,7 +76,24 @@ class CartPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         GestureDetector(
-                          onTap: () => {},
+                          onTap: () => {
+                            if (Get.find<UserController>().userLoggedIn())
+                              {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => (const SignInPage()),
+                                  ),
+                                ),
+                              }
+                            else
+                              {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => (const SignInPage()),
+                                  ),
+                                ),
+                              }
+                          },
                           child: const Text(
                             'Checkout',
                             style: TextStyle(fontSize: 18, color: Colors.white),

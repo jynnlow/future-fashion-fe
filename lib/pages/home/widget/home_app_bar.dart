@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:future/controllers/cart_controller.dart';
-import 'package:future/controllers/product_controller.dart';
 import 'package:future/pages/cart/cart.dart';
-import 'package:future/pages/cart/widget/cart_list.dart';
 import 'package:get/get.dart';
 
 class HomeAppBar extends StatelessWidget {
@@ -10,7 +8,6 @@ class HomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.find<ProductController>().initProduct(Get.find<CartController>());
     return Container(
       padding: EdgeInsets.only(
           top: MediaQuery.of(context).padding.top + 25, left: 25, right: 25),
@@ -35,7 +32,7 @@ class HomeAppBar extends StatelessWidget {
             ]))
           ],
         ),
-        GetBuilder<ProductController>(builder: (products) {
+        GetBuilder<CartController>(builder: (cart) {
           return Stack(
             children: [
               Container(
@@ -60,7 +57,7 @@ class HomeAppBar extends StatelessWidget {
                   ),
                 ),
               ),
-              products.totalItems > 0
+              cart.totalItems > 0
                   ? Positioned(
                       right: 0,
                       top: 0,
@@ -74,12 +71,12 @@ class HomeAppBar extends StatelessWidget {
                       ),
                     )
                   : Container(),
-              products.totalItems > 0
+              cart.totalItems > 0
                   ? Positioned(
                       right: 6,
                       top: 4,
                       child: Text(
-                        products.totalItems.toString(),
+                        cart.totalItems.toString(),
                         style:
                             const TextStyle(fontSize: 12, color: Colors.white),
                       ),

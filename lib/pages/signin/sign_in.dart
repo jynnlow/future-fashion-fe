@@ -1,7 +1,13 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:future/base/show_custom_snack_bar.dart';
+import 'package:future/controllers/cart_controller.dart';
+import 'package:future/controllers/user_controller.dart';
+import 'package:future/models/user_model.dart';
+import 'package:future/pages/home/home_page.dart';
 import 'package:future/pages/signup/sign_up.dart';
 import 'package:future/pages/signup/widget/text_field.dart';
+import 'package:get/get.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -10,6 +16,36 @@ class SignInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var usernameController = TextEditingController();
     var passwordController = TextEditingController();
+
+    void _signin() {
+      var userController = Get.find<UserController>();
+      var cartController =
+          Get.find<CartController>().getCartListFromLocalStorage();
+      String username = usernameController.text.trim();
+      String password = passwordController.text.trim();
+
+      if (username.isEmpty) {
+        showCustomSnackBar("Please fill in your username", title: "Username");
+      } else if (password.isEmpty) {
+        showCustomSnackBar("Please fill in your password", title: "Password");
+      } else {
+        UserModel signinReq = UserModel(username: username, password: password);
+        userController.signin(signinReq).then(
+          (status) {
+            if (status.isSuccess) {
+              showCustomSnackBar("Sign In successfully!", title: "Success");
+              usernameController.clear();
+              passwordController.clear();
+              print(cartController.length);
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => (HomePage())));
+            } else {
+              showCustomSnackBar(status.message);
+            }
+          },
+        );
+      }
+    }
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -68,22 +104,29 @@ class SignInPage extends StatelessWidget {
               textController: passwordController,
               hintText: "Password",
               icon: Icons.password,
+              isObscure: true,
             ),
             const SizedBox(
               height: 100,
             ),
-            Container(
-              width: 200,
-              height: 45,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30), color: Colors.pink),
-              child: const Center(
-                child: Text(
-                  "Sign In",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+            GestureDetector(
+              onTap: (() {
+                _signin();
+              }),
+              child: Container(
+                width: 200,
+                height: 45,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.pink),
+                child: const Center(
+                  child: Text(
+                    "Sign In",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),

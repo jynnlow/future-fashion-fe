@@ -47,8 +47,8 @@ class FavouriteController extends GetxController {
   //get favourite list when restart
   List<ProductModel> getFavouriteList() {
     _favouriteList = favouriteRepo.getFavouriteList();
-    print("Restart here! The length of favourite list is " +
-        _favouriteList.length.toString());
+    // print("Restart here! The length of favourite list is " +
+    //     _favouriteList.length.toString());
     return _favouriteList;
   }
 

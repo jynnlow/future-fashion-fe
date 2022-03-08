@@ -16,10 +16,17 @@ class ApiClient extends GetConnect implements GetxService {
     };
   }
 
+  void updateHeader(String token) {
+    _mainHeaders = {
+      'Content-type': 'application/json; charset=UTF-8',
+      'Authorization': 'Bearer $token'
+    };
+  }
+
   Future<Response> getMethod(String url) async {
     try {
       //does not need a complete url - just endpoint is needed
-      Response response = await get(url);
+      Response response = await get(url, headers: _mainHeaders);
       return response;
     } catch (e) {
       return Response(statusCode: 1, statusText: e.toString());

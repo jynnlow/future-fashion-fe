@@ -1,9 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:future/base/show_custom_snack_bar.dart';
+import 'package:future/controllers/user_controller.dart';
 import 'package:future/models/user_model.dart';
 import 'package:future/pages/signin/sign_in.dart';
 import 'package:future/pages/signup/widget/text_field.dart';
+import 'package:get/get.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -16,6 +18,7 @@ class SignUpPage extends StatelessWidget {
     var dobController = TextEditingController();
 
     void _registration() {
+      var userController = Get.find<UserController>();
       String username = usernameController.text.trim();
       String password = passwordController.text.trim();
       String confirmPassword = confirmPasswordController.text.trim();
@@ -35,10 +38,25 @@ class SignUpPage extends StatelessWidget {
       } else if (password != confirmPassword) {
         showCustomSnackBar("Failed to confirm password.", title: "Password");
       } else {
-        showCustomSnackBar("All went well", title: "Perfect");
         UserModel signupReq =
             UserModel(username: username, password: password, dob: dob);
-        print(signupReq.username);
+        userController.signup(signupReq).then(
+          (status) {
+            if (status.isSuccess) {
+              showCustomSnackBar(
+                  "Sign Up successfully! Please proceed to sign in",
+                  title: "Success");
+              usernameController.clear();
+              passwordController.clear();
+              confirmPasswordController.clear();
+              dobController.clear();
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => (SignInPage())));
+            } else {
+              showCustomSnackBar(status.message);
+            }
+          },
+        );
       }
     }
 
@@ -87,6 +105,7 @@ class SignUpPage extends StatelessWidget {
               textController: passwordController,
               hintText: "Password",
               icon: Icons.password,
+              isObscure: true,
             ),
             const SizedBox(
               height: 30,
@@ -95,6 +114,7 @@ class SignUpPage extends StatelessWidget {
               textController: confirmPasswordController,
               hintText: "Confirm your password",
               icon: Icons.password,
+              isObscure: true,
             ),
             const SizedBox(
               height: 100,
@@ -134,7 +154,7 @@ class SignUpPage extends StatelessWidget {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => const SignInPage()));
                       }),
-                    text: "Sign Up",
+                    text: "Sign In",
                     style: const TextStyle(
                         color: Colors.pink,
                         fontSize: 15,
