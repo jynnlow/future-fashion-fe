@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:future/data/api/api_client.dart';
 import 'package:future/models/user_model.dart';
 import 'package:future/utils/constants.dart';
@@ -24,6 +26,25 @@ class UserRepo {
     return await apiClient.getMethod(Constants.GET_PERSONAL_INFO);
   }
 
+  void addPersonalInfo(UserModel userModel) {
+    String userJson = "";
+    userJson = jsonEncode(userModel);
+    sharedPreferences.setString(Constants.USER_PROFILE, userJson);
+    print("Profile in local storage" +
+        sharedPreferences.getString(Constants.USER_PROFILE)!);
+    // getPersonalInfoFromSP();
+  }
+
+  UserModel getPersonalInfoFromSP() {
+    String userJson = "";
+    UserModel userModel = UserModel(username: "", password: "");
+    if (sharedPreferences.containsKey(Constants.USER_PROFILE)) {
+      userJson = sharedPreferences.getString(Constants.USER_PROFILE)!;
+      userModel = UserModel.fromJson(jsonDecode(userJson));
+    }
+    return userModel;
+  }
+
   bool userLoggedIn() {
     //"containsKey" will return a bool
     // sharedPreferences.clear();
@@ -46,6 +67,9 @@ class UserRepo {
     sharedPreferences.remove(Constants.TOKEN);
     apiClient.token = '';
     apiClient.updateHeader('');
+    sharedPreferences.clear();
+    print("Shared Preference ->" +
+        sharedPreferences.containsKey(Constants.TOKEN).toString());
     return true;
   }
 }

@@ -10,4 +10,5 @@ class Constants {
   static const String TOKEN = "";
   static const String CART_LIST = "cart-list";
   static const String FAVOURITE_LIST = "favourite- ist";
+  static const String USER_PROFILE = "user-profile";
 }

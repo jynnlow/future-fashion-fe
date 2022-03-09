@@ -1,11 +1,13 @@
+import 'dart:ffi';
+
 class UserModel {
   String username;
   String password;
   String dob;
   String role;
-  int chest;
-  int waist;
-  int hip;
+  num chest;
+  num waist;
+  num hip;
 
   UserModel({
     required this.username,

@@ -77,14 +77,9 @@ class CartPage extends StatelessWidget {
                       children: [
                         GestureDetector(
                           onTap: () => {
-                            if (Get.find<UserController>().userLoggedIn())
-                              {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) => (const SignInPage()),
-                                  ),
-                                ),
-                              }
+                            if (Get.find<UserController>()
+                                .checkIfUserLoggedIn())
+                              {print("You have logged in")}
                             else
                               {
                                 Navigator.of(context).push(

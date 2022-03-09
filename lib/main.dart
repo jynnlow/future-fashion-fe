@@ -4,6 +4,7 @@ import 'package:future/ar_fitting_room.dart';
 import 'package:future/controllers/cart_controller.dart';
 import 'package:future/controllers/favourite_controller.dart';
 import 'package:future/controllers/product_controller.dart';
+import 'package:future/controllers/user_controller.dart';
 import 'package:future/pages/home/home_page.dart';
 import 'package:future/helper/dependencies.dart' as dep;
 import 'package:future/pages/splash/splash_page.dart';
@@ -24,6 +25,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.find<CartController>().getCartListFromLocalStorage();
     Get.find<FavouriteController>().getFavouriteList();
+    print("Restart - User Logged In -> " +
+        Get.find<UserController>().checkIfUserLoggedIn().toString());
+    if (Get.find<UserController>().checkIfUserLoggedIn()) {
+      Get.find<UserController>().getPersonalInfoFromSP();
+    }
 
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.white,
