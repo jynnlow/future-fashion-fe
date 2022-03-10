@@ -19,8 +19,6 @@ class SignInPage extends StatelessWidget {
 
     void _signin() {
       var userController = Get.find<UserController>();
-      var cartController =
-          Get.find<CartController>().getCartListFromLocalStorage();
       String username = usernameController.text.trim();
       String password = passwordController.text.trim();
 
@@ -36,7 +34,6 @@ class SignInPage extends StatelessWidget {
               showCustomSnackBar("Sign In successfully!", title: "Success");
               usernameController.clear();
               passwordController.clear();
-              print(cartController.length);
               Navigator.of(context)
                   .push(MaterialPageRoute(builder: (context) => (HomePage())));
             } else {

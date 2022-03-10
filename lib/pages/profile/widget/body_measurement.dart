@@ -27,7 +27,7 @@ class BodyMeasurement extends StatelessWidget {
             ),
           ),
           Container(
-            width: 140,
+            width: 100,
             child: Text(
               body + ":",
               style: const TextStyle(
@@ -43,6 +43,17 @@ class BodyMeasurement extends StatelessWidget {
               fontSize: 15,
               color: Colors.black54,
               fontWeight: FontWeight.bold,
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(left: 5),
+            child: const Text(
+              "cm",
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.black54,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ],

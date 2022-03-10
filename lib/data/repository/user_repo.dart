@@ -22,6 +22,13 @@ class UserRepo {
     return await apiClient.post(Constants.SIGN_IN, signinReq.toJson());
   }
 
+  Future<Response> editPersonalInfo(UserModel editReq) async {
+    var token = getToken();
+    print(token);
+    return await apiClient.patchMethod(
+        Constants.EDIT_PERSONAL_INFO, editReq.toJson(), token);
+  }
+
   Future<Response> getPersonalInfo() async {
     return await apiClient.getMethod(Constants.GET_PERSONAL_INFO);
   }

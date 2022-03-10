@@ -33,18 +33,26 @@ class ApiClient extends GetConnect implements GetxService {
     }
   }
 
-  Future<Response> postMethod(String url, dynamic body) async {
+  Future<Response> postMethod(String url, dynamic body, String token) async {
     try {
-      Response response = await post(url, body, headers: _mainHeaders);
+      Response response = await post(url, body,
+          headers: _mainHeaders = {
+            'Content-type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer $token'
+          });
       return response;
     } catch (e) {
       return Response(statusCode: 1, statusText: e.toString());
     }
   }
 
-  Future<Response> patchMethod(String url, dynamic body) async {
+  Future<Response> patchMethod(String url, dynamic body, String token) async {
     try {
-      Response response = await patch(url, body, headers: _mainHeaders);
+      Response response = await patch(url, body,
+          headers: _mainHeaders = {
+            'Content-type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer $token'
+          });
       return response;
     } catch (e) {
       return Response(statusCode: 1, statusText: e.toString());

@@ -9,9 +9,6 @@ class UserController extends GetxController implements GetxService {
   final UserRepo userRepo;
   UserController({required this.userRepo});
 
-  // bool _userLoggedIn = false;
-  // bool get userLoggedIn => _userLoggedIn;
-
   late UserModel _userModel = UserModel(username: "", password: "");
   UserModel get userModel => _userModel;
 
@@ -35,8 +32,21 @@ class UserController extends GetxController implements GetxService {
     } else {
       userRepo.saveToken(response.body['details']);
       responseModel = ResponseModel(true, response.body['message']);
-      addPersonalInfo();
-      print("Sign In - User Controller ->" + checkIfUserLoggedIn().toString());
+      getPersonalInfo();
+    }
+    update();
+    return responseModel;
+  }
+
+  Future<ResponseModel> editPersonalInfo(UserModel editReq) async {
+    late ResponseModel responseModel;
+    Response response = await userRepo.editPersonalInfo(editReq);
+    if (response.body['status'] == "FAIL") {
+      responseModel = ResponseModel(false, response.body['message']);
+    } else {
+      _userModel = UserModel.fromJson(response.body['details']);
+      userRepo.addPersonalInfo(_userModel);
+      responseModel = ResponseModel(true, response.body['message']);
     }
     update();
     return responseModel;
@@ -48,15 +58,31 @@ class UserController extends GetxController implements GetxService {
     return userModel;
   }
 
-  addPersonalInfo() async {
+  getPersonalInfo() async {
     //get personal info from db once the user sign in their account
     Response response = await userRepo.getPersonalInfo();
     //convert json string to user model object
     _userModel = UserModel.fromJson(response.body['details']);
     //add user personal info to the local storage
-    userRepo.addPersonalInfo(userModel);
+    userRepo.addPersonalInfo(_userModel);
     update();
   }
+
+  // Future<ResponseModel> editPersonalInfo(UserModel editReq) async {
+  //   late ResponseModel responseModel;
+  //   Response response = await userRepo.editPersonalInfo(editReq);
+  //   if (response.body['status'] == "FAIL") {
+  //     responseModel = ResponseModel(false, response.body['message']);
+  //   } else {
+  //     print(response.body['details']);
+  //     //convert json string to user model object
+  //     _userModel = UserModel.fromJson(response.body['details']);
+  //     //add user personal info to the local storage
+  //     userRepo.addPersonalInfo(userModel);
+  //   }
+  //   update();
+  //   return responseModel;
+  // }
 
   bool checkIfUserLoggedIn() {
     return userRepo.userLoggedIn();
