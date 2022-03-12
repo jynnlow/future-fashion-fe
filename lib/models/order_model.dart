@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:future/models/cart_model.dart';
 import 'package:future/models/product_model.dart';
 
@@ -34,5 +36,15 @@ class OrderModel {
         snapshots!.add(CartModel.fromJson(item));
       }
     }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> jsonMap = {};
+
+    jsonMap['id'] = id;
+    jsonMap['total'] = total;
+    jsonMap['snapshots'] = snapshots;
+
+    return jsonMap;
   }
 }

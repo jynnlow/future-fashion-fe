@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:future/controllers/favourite_controller.dart';
-import 'package:future/pages/detail/detail.dart';
-import 'package:get/get.dart';
+import 'package:future/controllers/order_controller.dart';
+import 'package:future/pages/order/order_details_page.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 
-class FavouriteList extends StatelessWidget {
-  const FavouriteList({Key? key}) : super(key: key);
+class OrderList extends StatelessWidget {
+  const OrderList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<FavouriteController>(builder: (favourite) {
-      var favouriteList = favourite.favouriteList;
+    return GetBuilder<OrderController>(builder: (orderController) {
+      var orderList = orderController.orderList;
       return Stack(
         children: [
-          favouriteList.isNotEmpty
+          orderList.isNotEmpty
               ? Container(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   height: 1000,
@@ -20,7 +20,7 @@ class FavouriteList extends StatelessWidget {
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     scrollDirection: Axis.vertical,
-                    itemCount: favouriteList.length,
+                    itemCount: orderList.length,
                     itemBuilder: (context, index) => Card(
                       margin: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 2),
@@ -30,8 +30,8 @@ class FavouriteList extends StatelessWidget {
                       child: GestureDetector(
                         onTap: (() {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  DetailPage(clothes: favouriteList[index])));
+                              builder: (context) => OrderDetailsPage(
+                                  orderList: orderList[index].snapshots!)));
                         }),
                         child: Stack(
                           children: [
@@ -39,72 +39,60 @@ class FavouriteList extends StatelessWidget {
                               padding: const EdgeInsets.all(5),
                               child: Row(
                                 children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(15),
-                                    child: Image.asset(
-                                      favouriteList[index].pictures!.first,
-                                      width: 90,
-                                    ),
-                                  ),
                                   const SizedBox(width: 10),
                                   Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        favouriteList[index].item!,
+                                        "ID: #000000" +
+                                            orderList[index].id.toString(),
                                         style: const TextStyle(
                                             fontWeight: FontWeight.bold,
                                             height: 1.5,
                                             fontSize: 15),
                                       ),
                                       Text(
-                                        "Stock:" +
-                                            favouriteList[index]
-                                                .stock
-                                                .toString(),
+                                        "Status: " +
+                                            orderList[index].status.toString(),
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            height: 1.5,
+                                            color: Colors.pink),
+                                      ),
+                                      Text(
+                                        "Total Amount: RM" +
+                                            orderList[index].total.toString(),
                                         style: const TextStyle(
                                             fontWeight: FontWeight.bold,
                                             height: 1.5,
                                             color: Colors.grey),
                                       ),
                                       Text(
-                                        "RM " +
-                                            favouriteList[index]
-                                                .price
+                                        "Total Item: " +
+                                            orderList[index]
+                                                .snapshots!
+                                                .length
                                                 .toString(),
                                         style: const TextStyle(
                                             fontWeight: FontWeight.bold,
                                             height: 1.5,
-                                            color: Colors.pink),
-                                      )
+                                            color: Colors.grey),
+                                      ),
                                     ],
                                   )
                                 ],
                               ),
                             ),
-                            Positioned(
-                              top: 0,
-                              right: 0,
-                              child: Container(
-                                padding: const EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                    color: Colors.white.withOpacity(0.9),
-                                    shape: BoxShape.circle),
-                                child: const Icon(
-                                  Icons.favorite,
-                                  color: Colors.red,
-                                  size: 15,
-                                ),
-                              ),
-                            )
                           ],
                         ),
                       ),
                     ),
                   ),
                 )
-              : Container(),
+              : Container(
+                  child: Text("no item"),
+                ),
         ],
       );
     });

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:future/base/show_custom_snack_bar.dart';
 import 'package:future/controllers/cart_controller.dart';
+import 'package:future/controllers/order_controller.dart';
 import 'package:future/controllers/user_controller.dart';
+import 'package:future/models/order_model.dart';
+import 'package:future/pages/order/order_page.dart';
 import 'package:future/pages/signin/sign_in.dart';
 import 'package:get/get.dart';
 
@@ -12,16 +16,33 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: const [
-          CartAppBar(),
-          CartList(),
-        ],
-      ),
-      bottomNavigationBar: GetBuilder<CartController>(
-        builder: (cart) {
-          return Container(
+    void _checkOut() {
+      var orderController = Get.find<OrderController>();
+      var cartController = Get.find<CartController>();
+      var cartList = Get.find<CartController>().getCartList;
+      var total = Get.find<CartController>().totalAmount;
+      OrderModel orderReq = OrderModel(total: total, snapshots: cartList);
+      orderController.createOrder(orderReq).then((status) {
+        if (status.isSuccess) {
+          showCustomSnackBar("Checkout successfully");
+          cartController.clearCart();
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => (OrderPage())));
+        } else {
+          showCustomSnackBar(status.message);
+        }
+      });
+    }
+
+    return GetBuilder<CartController>(builder: (cartController) {
+      return Scaffold(
+          body: Stack(
+            children: const [
+              CartAppBar(),
+              CartList(),
+            ],
+          ),
+          bottomNavigationBar: Container(
             height: 100,
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
             margin: const EdgeInsets.only(bottom: 10),
@@ -56,7 +77,7 @@ class CartPage extends StatelessWidget {
                         width: 5,
                       ),
                       Text(
-                        cart.totalAmount.toString(),
+                        cartController.totalAmount.toString(),
                         style: const TextStyle(
                           height: 1,
                           fontSize: 23,
@@ -79,7 +100,7 @@ class CartPage extends StatelessWidget {
                           onTap: () => {
                             if (Get.find<UserController>()
                                 .checkIfUserLoggedIn())
-                              {print("You have logged in")}
+                              {_checkOut()}
                             else
                               {
                                 Navigator.of(context).push(
@@ -100,9 +121,7 @@ class CartPage extends StatelessWidget {
                 ],
               ),
             ),
-          );
-        },
-      ),
-    );
+          ));
+    });
   }
 }

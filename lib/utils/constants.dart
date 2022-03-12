@@ -8,6 +8,7 @@ class Constants {
   static const String GET_PERSONAL_INFO = "/user/personal-info";
   static const String EDIT_PERSONAL_INFO = "/user/edit-personal-info";
   static const String GET_ORDER_LIST = "/order/list-orders-user";
+  static const String CREATE_ORDER = "/order/create-order";
 
   static const String TOKEN = "";
   static const String CART_LIST = "cart-list";

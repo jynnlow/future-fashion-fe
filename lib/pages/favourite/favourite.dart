@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:future/pages/favourite/widget/favourite_app_bar.dart';
 import 'package:future/pages/favourite/widget/favourite_list.dart';
 import 'package:future/pages/home/home_page.dart';
-import 'package:future/pages/home/main_clothes_page.dart';
 
 class FavouritePage extends StatelessWidget {
   const FavouritePage({Key? key}) : super(key: key);
@@ -25,10 +23,11 @@ class FavouritePage extends StatelessWidget {
           icon: const Icon(
             Icons.arrow_back_ios,
             color: Colors.white,
+            size: 15,
           ),
           onPressed: () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => HomePage()));
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const HomePage()));
           },
         ),
         backgroundColor: Colors.pink,
@@ -37,12 +36,11 @@ class FavouritePage extends StatelessWidget {
           "Favourite List",
           style: TextStyle(
             color: Colors.white,
-            fontSize: 20,
+            fontSize: 17,
             fontWeight: FontWeight.bold,
           ),
         ),
       ),
     );
-    ;
   }
 }

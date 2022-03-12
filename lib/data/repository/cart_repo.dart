@@ -51,8 +51,4 @@ class CartRepo {
     cart = [];
     sharedPreferences.remove(Constants.CART_LIST);
   }
-
-  void clearSharedPreference() {
-    removeCart();
-  }
 }

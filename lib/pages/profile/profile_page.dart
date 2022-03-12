@@ -162,7 +162,11 @@ class ProfilePage extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.pink,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios, color: Colors.white),
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: Colors.white,
+              size: 15,
+            ),
             onPressed: () => Navigator.of(context)
                 .push(MaterialPageRoute(builder: (context) => (HomePage()))),
           ),
@@ -170,7 +174,7 @@ class ProfilePage extends StatelessWidget {
             "Profile",
             style: TextStyle(
               color: Colors.white,
-              fontSize: 20,
+              fontSize: 17,
               fontWeight: FontWeight.bold,
             ),
           ),

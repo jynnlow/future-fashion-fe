@@ -93,7 +93,7 @@ class CartController extends GetxController {
 
   void clearCart() {
     _cartItems.clear();
-    cartRepo.clearSharedPreference();
+    cartRepo.removeCart();
     update();
   }
 }
