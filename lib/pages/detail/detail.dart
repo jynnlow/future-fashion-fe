@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:future/controllers/cart_controller.dart';
 import 'package:future/controllers/product_controller.dart';
-import 'package:future/pages/detail/widget/add_cart.dart';
 import 'package:future/pages/detail/widget/detail_app_bar.dart';
 import 'package:future/pages/detail/widget/clothes_info.dart';
 import 'package:future/pages/detail/widget/size_chart.dart';
 import 'package:future/pages/detail/widget/size_list.dart';
 import 'package:future/models/product_model.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 
 class DetailPage extends StatelessWidget {
   final ProductModel clothes;

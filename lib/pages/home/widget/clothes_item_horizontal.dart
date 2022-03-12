@@ -36,21 +36,6 @@ class ClothesItemHorizontal extends StatelessWidget {
                         fit: BoxFit.fitHeight),
                   ),
                 ),
-                Positioned(
-                  right: 20,
-                  top: 10,
-                  child: Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.9),
-                        shape: BoxShape.circle),
-                    child: const Icon(
-                      Icons.favorite,
-                      color: Colors.red,
-                      size: 15,
-                    ),
-                  ),
-                )
               ],
             ),
             Text(

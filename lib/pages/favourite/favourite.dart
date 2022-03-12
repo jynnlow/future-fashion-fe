@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:future/controllers/favourite_controller.dart';
 import 'package:future/pages/favourite/widget/favourite_list.dart';
 import 'package:future/pages/home/home_page.dart';
+import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 
 class FavouritePage extends StatelessWidget {
   const FavouritePage({Key? key}) : super(key: key);

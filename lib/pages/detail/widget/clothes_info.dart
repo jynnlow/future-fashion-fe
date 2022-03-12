@@ -9,7 +9,6 @@ class ClothesInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Get.find<FavouriteController>().initFavourite();
     return Container(
       padding: const EdgeInsets.only(left: 25, right: 25, top: 15, bottom: 5),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -25,16 +24,15 @@ class ClothesInfo extends StatelessWidget {
                 Get.find<FavouriteController>().addItemToFavourite(clothes);
               },
               child: Container(
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.9),
-                    shape: BoxShape.circle),
-                child: const Icon(
-                  Icons.favorite,
-                  color: Colors.red,
-                  size: 15,
-                ),
-              ),
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.9),
+                      shape: BoxShape.circle),
+                  child: const Icon(
+                    Icons.favorite,
+                    color: Colors.red,
+                    size: 15,
+                  )),
             )
           ],
         ),

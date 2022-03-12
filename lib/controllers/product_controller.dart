@@ -55,9 +55,9 @@ class ProductController extends GetxController {
       } else {
         _quantity = _quantity + 1;
       }
-    } else if (!isIncrement && _quantity != 0) {
+    } else if (!isIncrement && _quantity != 1) {
       _quantity = _quantity - 1;
-    } else if (!isIncrement && _quantity == 0) {
+    } else if (!isIncrement && _quantity == 1) {
       _quantity = _quantity;
       Get.snackbar(
         "Item count",
@@ -70,7 +70,7 @@ class ProductController extends GetxController {
   }
 
   void initProduct(CartController cartController) {
-    _quantity = 0;
+    _quantity = 1;
     _inCartItem = 0;
     _sizing = 'XS';
     _cartController = cartController;

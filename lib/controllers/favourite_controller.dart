@@ -21,15 +21,16 @@ class FavouriteController extends GetxController {
             backgroundColor: Colors.pink,
             colorText: Colors.white,
           );
-        } else {
-          _favouriteList.add(product);
-          Get.snackbar(
-            "Favourite Item",
-            "This item is added successfully in your favourite list",
-            backgroundColor: Colors.pink,
-            colorText: Colors.white,
-          );
+          return;
         }
+        _favouriteList.add(product);
+        Get.snackbar(
+          "Favourite Item",
+          "This item is added successfully in your favourite list",
+          backgroundColor: Colors.pink,
+          colorText: Colors.white,
+        );
+        return;
       }
     } else {
       _favouriteList.add(product);
@@ -39,6 +40,7 @@ class FavouriteController extends GetxController {
         backgroundColor: Colors.pink,
         colorText: Colors.white,
       );
+      return;
     }
     update();
     favouriteRepo.addToFavouriteList(favouriteList);
@@ -47,10 +49,6 @@ class FavouriteController extends GetxController {
   //get favourite list when restart
   List<ProductModel> getFavouriteList() {
     _favouriteList = favouriteRepo.getFavouriteList();
-    // print("Restart here! The length of favourite list is " +
-    //     _favouriteList.length.toString());
     return _favouriteList;
   }
-
-  void initFavourite() {}
 }
