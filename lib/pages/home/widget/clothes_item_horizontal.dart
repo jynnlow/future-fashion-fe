@@ -32,7 +32,7 @@ class ClothesItemHorizontal extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     image: DecorationImage(
-                        image: AssetImage(clothes.picture!.first),
+                        image: AssetImage(clothes.pictures!.first),
                         fit: BoxFit.fitHeight),
                   ),
                 ),

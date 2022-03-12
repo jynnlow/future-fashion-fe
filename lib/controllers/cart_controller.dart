@@ -15,7 +15,7 @@ class CartController extends GetxController {
 
   void addItem(ProductModel product, int quantity, String sizing) {
     var totalQuantity = 0;
-    String _cartId = product.ID!.toString() + ':' + sizing;
+    String _cartId = product.id!.toString() + ':' + sizing;
 
     if (_cartItems.containsKey(_cartId)) {
       _cartItems.update(_cartId, (value) {
@@ -24,7 +24,6 @@ class CartController extends GetxController {
           id: _cartId,
           item: value.item,
           price: value.price,
-          picture: value.picture,
           sizing: sizing,
           quantity: value.quantity! + quantity,
           isExist: true,
@@ -45,7 +44,6 @@ class CartController extends GetxController {
               id: _cartId,
               item: product.item,
               price: product.price,
-              picture: product.picture,
               sizing: sizing,
               quantity: quantity,
               isExist: true,
@@ -58,7 +56,6 @@ class CartController extends GetxController {
     }
     // add the cart model to the local storage - in cart repo
     cartRepo.addToCartList(getCartList);
-    print(totalItems);
     update();
   }
 
@@ -77,8 +74,8 @@ class CartController extends GetxController {
     }).toList();
   }
 
-  int get totalAmount {
-    var totalAmount = 0;
+  num get totalAmount {
+    num totalAmount = 0;
     _cartItems.forEach((key, value) {
       totalAmount += (value.quantity! * value.price!);
     });
@@ -87,15 +84,10 @@ class CartController extends GetxController {
 
   List<CartModel> getCartListFromLocalStorage() {
     storageCartItem = cartRepo.getCartList();
-
-    // for (int i = 0; i < storageCartItem.length; i++) {
-    //   _cartItems.putIfAbsent(storageCartItem[i].id!, () => storageCartItem[i]);
-    // }
     storageCartItem.forEach((element) {
       String uniqueID = element.id!;
       _cartItems.addAll({uniqueID: element});
     });
-
     return storageCartItem;
   }
 

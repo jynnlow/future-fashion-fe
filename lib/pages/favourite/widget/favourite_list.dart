@@ -42,7 +42,7 @@ class FavouriteList extends StatelessWidget {
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(15),
                                     child: Image.asset(
-                                      favouriteList[index].picture!.first,
+                                      favouriteList[index].pictures!.first,
                                       width: 80,
                                     ),
                                   ),

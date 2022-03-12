@@ -9,21 +9,19 @@ class Product {
   }
 
   Product.fromJson(Map<String, dynamic> json) {
-    if (json['details'] != null) {
-      _products = <ProductModel>[];
-      json['details'].forEach((v) {
-        _products.add(ProductModel.fromJson(v));
-      });
-    }
+    _products = <ProductModel>[];
+    json['products'].forEach((v) {
+      _products.add(ProductModel.fromJson(v));
+    });
   }
 }
 
 class ProductModel {
-  int? ID;
+  int? id;
   String? item;
-  int? price;
+  num? price;
   int? stock;
-  List<String>? picture;
+  List<String>? pictures;
   Sizing? xs;
   Sizing? s;
   Sizing? m;
@@ -31,11 +29,11 @@ class ProductModel {
   Sizing? xl;
 
   ProductModel(
-      {this.ID,
+      {this.id,
       this.item,
       this.price,
       this.stock,
-      this.picture,
+      this.pictures,
       this.xs,
       this.s,
       this.m,
@@ -43,75 +41,62 @@ class ProductModel {
       this.xl});
 
   ProductModel.fromJson(Map<String, dynamic> json) {
-    ID = json['ID'];
+    id = json['id'];
     item = json['item'];
     price = json['price'];
-    if (json['picture'] != '') {
-      var jsonData = jsonDecode(json['picture']);
-      picture = <String>[];
-      for (var i = 0; i < jsonData.length; i++) {
-        picture!.add(jsonData[i]);
-      }
-    } else {
-      picture = null;
-    }
     stock = json['stock'];
-    xs = json['xs'] != null ? Sizing.fromJson(json['xs']) : null;
-    s = json['s'] != null ? Sizing.fromJson(json['s']) : null;
-    m = json['m'] != null ? Sizing.fromJson(json['m']) : null;
-    l = json['l'] != null ? Sizing.fromJson(json['l']) : null;
-    xl = json['xl'] != null ? Sizing.fromJson(json['xl']) : null;
+    pictures =
+        json['pictures'] != null ? List<String>.from(json['pictures']) : [];
+    xs = json['xs'] != null ? Sizing(json['xs']) : null;
+    s = json['s'] != null ? Sizing(json['s']) : null;
+    m = json['m'] != null ? Sizing(json['m']) : null;
+    l = json['l'] != null ? Sizing(json['l']) : null;
+    xl = json['xl'] != null ? Sizing(json['xl']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> jsonMap = new Map<String, dynamic>();
+    final Map<String, dynamic> jsonMap = {};
 
-    jsonMap["ID"] = this.ID;
-    jsonMap["item"] = this.item;
-    jsonMap["price"] = this.price;
-    jsonMap["picture"] = jsonEncode(this.picture);
-    jsonMap["stock"] = this.stock;
-    if (this.xs != null) {
-      jsonMap['xs'] = jsonEncode(this.xs!.toJson());
+    jsonMap["id"] = id;
+    jsonMap["item"] = item;
+    jsonMap["price"] = price;
+    jsonMap["pictures"] = jsonEncode(pictures);
+    jsonMap["stock"] = stock;
+    if (xs != null) {
+      jsonMap['xs'] = jsonEncode(xs!.toJson());
     }
-    if (this.s != null) {
-      jsonMap['s'] = jsonEncode(this.s!.toJson());
+    if (s != null) {
+      jsonMap['s'] = jsonEncode(s!.toJson());
     }
-    if (this.m != null) {
-      jsonMap['m'] = jsonEncode(this.m!.toJson());
+    if (m != null) {
+      jsonMap['m'] = jsonEncode(m!.toJson());
     }
-    if (this.l != null) {
-      jsonMap['l'] = jsonEncode(this.l!.toJson());
+    if (l != null) {
+      jsonMap['l'] = jsonEncode(l!.toJson());
     }
-    if (this.xl != null) {
-      jsonMap['xl'] = jsonEncode(this.xl!.toJson());
+    if (xl != null) {
+      jsonMap['xl'] = jsonEncode(xl!.toJson());
     }
     return jsonMap;
   }
 }
 
 class Sizing {
-  int? chest;
-  int? waist;
-  int? hip;
+  num? chest;
+  num? waist;
+  num? hip;
 
-  Sizing({this.chest, this.waist, this.hip});
-
-  Sizing.fromJson(String sizingData) {
-    if (sizingData.isNotEmpty) {
-      var sizing = jsonDecode(sizingData);
-
-      chest = sizing['chest'];
-      waist = sizing['waist'];
-      hip = sizing['hip'];
-    }
+  Sizing(Map<String, dynamic> sizingData) {
+    chest = sizingData['chest'];
+    waist = sizingData['waist'];
+    hip = sizingData['hip'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> jsonMap = new Map<String, dynamic>();
-    jsonMap['chest'] = this.chest;
-    jsonMap['waist'] = this.waist;
-    jsonMap['hip'] = this.hip;
+    final Map<String, dynamic> jsonMap = {};
+    jsonMap['chest'] = chest;
+    jsonMap['waist'] = waist;
+    jsonMap['hip'] = hip;
     return jsonMap;
   }
 }

@@ -85,6 +85,7 @@ class UserController extends GetxController implements GetxService {
   // }
 
   bool checkIfUserLoggedIn() {
+    print(userRepo.getToken());
     return userRepo.userLoggedIn();
   }
 

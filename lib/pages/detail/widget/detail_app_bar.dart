@@ -30,7 +30,7 @@ class _DetailAppBarState extends State<DetailAppBar> {
                       _currentPage = index;
                     });
                   }),
-              items: widget.clothes.picture!
+              items: widget.clothes.pictures!
                   .map((e) => Builder(
                         builder: (context) => Container(
                           margin: EdgeInsets.only(
@@ -50,7 +50,7 @@ class _DetailAppBarState extends State<DetailAppBar> {
             bottom: 30,
             left: 180,
             child: Row(
-              children: widget.clothes.picture!
+              children: widget.clothes.pictures!
                   .asMap()
                   .entries
                   .map(

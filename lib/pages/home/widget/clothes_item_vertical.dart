@@ -29,7 +29,7 @@ class ClothesItemVertical extends StatelessWidget {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(15),
                         child: Image.asset(
-                          clothes.picture!.first,
+                          clothes.pictures!.first,
                           width: 80,
                         ),
                       ),

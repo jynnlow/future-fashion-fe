@@ -42,8 +42,8 @@ class CartList extends StatelessWidget {
                               decoration: BoxDecoration(
                                   image: DecorationImage(
                                       fit: BoxFit.fitHeight,
-                                      image: AssetImage(cart
-                                          .getCartList[index].picture!.first)),
+                                      image: AssetImage(cart.getCartList[index]
+                                          .product!.pictures!.first)),
                                   borderRadius: BorderRadius.circular(20),
                                   color: Colors.white),
                             ),

@@ -24,7 +24,6 @@ class UserRepo {
 
   Future<Response> editPersonalInfo(UserModel editReq) async {
     var token = getToken();
-    print(token);
     return await apiClient.patchMethod(
         Constants.EDIT_PERSONAL_INFO, editReq.toJson(), token);
   }

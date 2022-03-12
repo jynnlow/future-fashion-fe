@@ -14,7 +14,7 @@ class FavouriteController extends GetxController {
   void addItemToFavourite(ProductModel product) {
     if (_favouriteList.isNotEmpty) {
       for (int i = 0; i < _favouriteList.length; i++) {
-        if (_favouriteList[i].ID == product.ID) {
+        if (_favouriteList[i].id == product.id) {
           Get.snackbar(
             "Favourite Item",
             "This item has already in your favourite list",

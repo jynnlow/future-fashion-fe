@@ -33,6 +33,20 @@ class ApiClient extends GetConnect implements GetxService {
     }
   }
 
+  Future<Response> getMethodWithToken(String url, String token) async {
+    try {
+      //does not need a complete url - just endpoint is needed
+      Response response = await get(url,
+          headers: _mainHeaders = {
+            'Content-type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer $token'
+          });
+      return response;
+    } catch (e) {
+      return Response(statusCode: 1, statusText: e.toString());
+    }
+  }
+
   Future<Response> postMethod(String url, dynamic body, String token) async {
     try {
       Response response = await post(url, body,

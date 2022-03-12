@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:future/controllers/cart_controller.dart';
 import 'package:future/data/repository/product_repo.dart';
@@ -9,7 +11,7 @@ class ProductController extends GetxController {
   final ProductRepo productRepo;
   ProductController({required this.productRepo});
 
-  List<ProductModel> _clothesList = [];
+  final List<ProductModel> _clothesList = [];
   List<ProductModel> get clothesList => _clothesList;
 
   late CartController _cartController;
@@ -25,12 +27,15 @@ class ProductController extends GetxController {
 
   Future<void> getProductList() async {
     Response response = await productRepo.getProductList();
-    if (response.body['status'] == "FAIL") {
-    } else {
-      _clothesList.clear();
-      _clothesList.addAll(Product.fromJson(response.body).products);
-      update();
+    if (response.body['status'] == 'FAIL') {
+      return;
     }
+
+    List<ProductModel> products =
+        Product.fromJson(response.body['details']).products;
+    _clothesList.clear();
+    _clothesList.addAll(products);
+    update();
   }
 
   void setSizing(String sizing) {
