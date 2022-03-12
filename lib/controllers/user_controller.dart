@@ -68,24 +68,7 @@ class UserController extends GetxController implements GetxService {
     update();
   }
 
-  // Future<ResponseModel> editPersonalInfo(UserModel editReq) async {
-  //   late ResponseModel responseModel;
-  //   Response response = await userRepo.editPersonalInfo(editReq);
-  //   if (response.body['status'] == "FAIL") {
-  //     responseModel = ResponseModel(false, response.body['message']);
-  //   } else {
-  //     print(response.body['details']);
-  //     //convert json string to user model object
-  //     _userModel = UserModel.fromJson(response.body['details']);
-  //     //add user personal info to the local storage
-  //     userRepo.addPersonalInfo(userModel);
-  //   }
-  //   update();
-  //   return responseModel;
-  // }
-
   bool checkIfUserLoggedIn() {
-    print(userRepo.getToken());
     return userRepo.userLoggedIn();
   }
 

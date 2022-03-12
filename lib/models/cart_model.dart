@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:future/models/product_model.dart';
 
 class CartModel {
@@ -35,7 +33,7 @@ class CartModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> jsonMap = new Map<String, dynamic>();
+    final Map<String, dynamic> jsonMap = {};
     jsonMap["id"] = id;
     jsonMap["item"] = item;
     jsonMap["price"] = price;
@@ -46,23 +44,5 @@ class CartModel {
     jsonMap["product"] = product!.toJson();
 
     return jsonMap;
-  }
-}
-
-class Sizing {
-  int? chest;
-  int? waist;
-  int? hip;
-
-  Sizing({this.chest, this.waist, this.hip});
-
-  Sizing.fromJson(String sizingData) {
-    if (sizingData.isNotEmpty) {
-      var sizing = jsonDecode(sizingData);
-
-      chest = sizing['chest'];
-      waist = sizing['waist'];
-      hip = sizing['hip'];
-    }
   }
 }

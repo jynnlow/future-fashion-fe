@@ -9,7 +9,6 @@ class CartList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Get.find<ProductController>().initProduct(Get.find<CartController>());
     return Positioned(
       top: 120,
       left: 20,

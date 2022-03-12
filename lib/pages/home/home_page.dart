@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:future/controllers/product_controller.dart';
 import 'package:future/pages/favourite/favourite.dart';
 import 'package:future/pages/home/main_clothes_page.dart';
+import 'package:future/pages/order/order_page.dart';
 import 'package:future/pages/profile/profile_page.dart';
-import 'package:future/pages/signin/sign_in.dart';
-import 'package:future/pages/signup/sign_up.dart';
 import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,11 +19,8 @@ class _HomePageState extends State<HomePage> {
   List pages = [
     const MainClothesPage(),
     const FavouritePage(),
-    // SignInPage(),
-    Container(
-      child: Center(child: Text("Order")),
-    ),
-    ProfilePage(),
+    const OrderPage(),
+    const ProfilePage(),
   ];
 
   void onTapNav(int index) {

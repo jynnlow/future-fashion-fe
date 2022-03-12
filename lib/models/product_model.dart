@@ -60,22 +60,22 @@ class ProductModel {
     jsonMap["id"] = id;
     jsonMap["item"] = item;
     jsonMap["price"] = price;
-    jsonMap["pictures"] = jsonEncode(pictures);
+    jsonMap["pictures"] = pictures;
     jsonMap["stock"] = stock;
     if (xs != null) {
-      jsonMap['xs'] = jsonEncode(xs!.toJson());
+      jsonMap['xs'] = xs!.toJson();
     }
     if (s != null) {
-      jsonMap['s'] = jsonEncode(s!.toJson());
+      jsonMap['s'] = s!.toJson();
     }
     if (m != null) {
-      jsonMap['m'] = jsonEncode(m!.toJson());
+      jsonMap['m'] = m!.toJson();
     }
     if (l != null) {
-      jsonMap['l'] = jsonEncode(l!.toJson());
+      jsonMap['l'] = l!.toJson();
     }
     if (xl != null) {
-      jsonMap['xl'] = jsonEncode(xl!.toJson());
+      jsonMap['xl'] = xl!.toJson();
     }
     return jsonMap;
   }
