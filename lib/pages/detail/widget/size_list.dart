@@ -28,7 +28,10 @@ class _SizeListState extends State<SizeList> {
                         setState(() {
                           currentSelected = index;
                         });
-                        products.setSizing(sizeList[index]);
+                        products.setSizing(index);
+
+                        // products.setARModel(clothes.id);
+                        print(products.sizing);
                       },
                       child: Container(
                         padding: const EdgeInsets.symmetric(

@@ -108,10 +108,19 @@ class _DetailAppBarState extends State<DetailAppBar> {
                   return GestureDetector(
                     onTap: () {
                       print(widget.clothes.id);
-                      print(productController.sizing);
-                      // print(productController.modelMap[widget.clothes]);
-                      // Navigator.of(context).push(MaterialPageRoute(
-                      //     builder: (context) => FittingRoomPage()));
+                      var selectedProduct = productController.getARModel(
+                          widget.clothes.id!, productController.sizing);
+
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => FittingRoomPage(
+                            model: selectedProduct.modelURL,
+                            sizingScale: selectedProduct.size.sizingScale,
+                            positionAdjustment:
+                                selectedProduct.size.positionAdjustment,
+                          ),
+                        ),
+                      );
                     },
                     child: Container(
                         margin: EdgeInsets.only(

@@ -1,8 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:future/controllers/cart_controller.dart';
 import 'package:future/data/repository/product_repo.dart';
+import 'package:future/models/ar_model.dart';
 import 'package:future/models/cart_model.dart';
 import 'package:future/models/product_model.dart';
 import 'package:get/get.dart';
@@ -19,6 +18,7 @@ class ProductController extends GetxController {
   int _quantity = 1;
   int get quantity => _quantity;
 
+  final List<String> _sizeList = ['XS', 'S', 'M', 'L', 'XL'];
   String _sizing = 'XS';
   String get sizing => _sizing;
 
@@ -38,8 +38,12 @@ class ProductController extends GetxController {
     update();
   }
 
-  void setSizing(String sizing) {
-    _sizing = sizing;
+  void setSizing(int index) {
+    _sizing = _sizeList[index];
+  }
+
+  SelectedDetail getARModel(int productID, String sizing) {
+    return getARDetailsByProductID(productID, sizing);
   }
 
   void setQuantity(bool isIncrement) {
@@ -61,7 +65,7 @@ class ProductController extends GetxController {
       _quantity = _quantity;
       Get.snackbar(
         "Item count",
-        "You can't reduct anymore!",
+        "You can't reduce anymore!",
         backgroundColor: Colors.pink,
         colorText: Colors.white,
       );

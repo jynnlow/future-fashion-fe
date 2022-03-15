@@ -27,8 +27,7 @@ class FittingRoomPage extends StatelessWidget {
             size: 15,
           ),
           onPressed: () {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const HomePage()));
+            Navigator.of(context).pop();
           },
         ),
         backgroundColor: Colors.pink,

@@ -20,7 +20,8 @@ Future<void> init() async {
   //api client
   Get.lazyPut(() => ApiClient(baseUrl: Constants.BASE_URL));
   //repos
-  Get.lazyPut(() => ProductRepo(apiClient: Get.find()));
+  Get.lazyPut(
+      () => ProductRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
   Get.lazyPut(() => CartRepo(sharedPreferences: Get.find()));
   Get.lazyPut(() => FavouriteRepo(sharedPreferences: Get.find()));
   Get.lazyPut(
