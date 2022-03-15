@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:future/ar/fitting_room_page.dart';
+import 'package:future/controllers/product_controller.dart';
 import 'package:future/models/product_model.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:get/get.dart';
 
 class DetailAppBar extends StatefulWidget {
   final ProductModel clothes;
@@ -101,19 +104,30 @@ class _DetailAppBarState extends State<DetailAppBar> {
                     ),
                   ),
                 ),
-                Container(
-                    margin: EdgeInsets.only(
-                        top: MediaQuery.of(context).padding.top),
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.9),
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(
-                      Icons.camera_alt_outlined,
-                      color: Colors.grey,
-                      size: 20,
-                    ))
+                GetBuilder<ProductController>(builder: (productController) {
+                  return GestureDetector(
+                    onTap: () {
+                      print(widget.clothes.id);
+                      print(productController.sizing);
+                      // print(productController.modelMap[widget.clothes]);
+                      // Navigator.of(context).push(MaterialPageRoute(
+                      //     builder: (context) => FittingRoomPage()));
+                    },
+                    child: Container(
+                        margin: EdgeInsets.only(
+                            top: MediaQuery.of(context).padding.top),
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.9),
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Icons.camera_alt_outlined,
+                          color: Colors.grey,
+                          size: 20,
+                        )),
+                  );
+                })
               ],
             ),
           )

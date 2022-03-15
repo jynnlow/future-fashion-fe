@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:future/ar_fitting_room.dart';
+import 'package:future/ar/fitting_room_page.dart';
 import 'package:future/controllers/cart_controller.dart';
 import 'package:future/controllers/favourite_controller.dart';
 import 'package:future/controllers/order_controller.dart';
 import 'package:future/controllers/product_controller.dart';
 import 'package:future/controllers/user_controller.dart';
+import 'package:future/pages/detail/detail.dart';
 import 'package:future/pages/home/home_page.dart';
 import 'package:future/helper/dependencies.dart' as dep;
 import 'package:future/pages/splash/splash_page.dart';
@@ -37,10 +38,11 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.white,
     ));
-    return const GetMaterialApp(
+    return GetMaterialApp(
       title: 'Future Fashion App',
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      // home: SplashScreen(),
+      home: HomePage(),
     );
   }
 }

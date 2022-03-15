@@ -16,7 +16,7 @@ class ProductController extends GetxController {
 
   late CartController _cartController;
 
-  int _quantity = 0;
+  int _quantity = 1;
   int get quantity => _quantity;
 
   String _sizing = 'XS';

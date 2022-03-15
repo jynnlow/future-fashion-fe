@@ -1,7 +1,7 @@
 class Constants {
   static const String APP_NAME = "Future Fashion";
 
-  static const String BASE_URL = "http://127.0.0.1:8080";
+  static const String BASE_URL = "http://192.168.1.104:8080";
   static const String GET_PRODUCT_LIST = "/product/list-products";
   static const String SIGN_UP = "/user/signup";
   static const String SIGN_IN = "/user/login";
