@@ -62,7 +62,7 @@ class HomeAppBar extends StatelessWidget {
                       right: 0,
                       top: 0,
                       child: Container(
-                        width: 22,
+                        width: 20,
                         height: 22,
                         decoration: const BoxDecoration(
                           color: Colors.pink,

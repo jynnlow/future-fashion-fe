@@ -10,7 +10,7 @@ class ClothesInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(left: 25, right: 25, top: 15, bottom: 5),
+      padding: const EdgeInsets.only(left: 25, right: 25, top: 25, bottom: 10),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

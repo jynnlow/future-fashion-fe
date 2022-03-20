@@ -30,7 +30,7 @@ class ClothesItemVertical extends StatelessWidget {
                         borderRadius: BorderRadius.circular(15),
                         child: Image.asset(
                           clothes.pictures!.first,
-                          width: 80,
+                          width: 100,
                         ),
                       ),
                       const SizedBox(width: 10),
@@ -42,21 +42,33 @@ class ClothesItemVertical extends StatelessWidget {
                             style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 height: 1.5,
-                                fontSize: 15),
+                                fontSize: 16),
                           ),
-                          Text(
-                            "Stock:" + clothes.stock.toString(),
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                height: 1.5,
-                                color: Colors.grey),
-                          ),
-                          Text(
-                            "RM " + clothes.price.toString(),
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                height: 1.5,
-                                color: Colors.pink),
+                          // Text(
+                          //   "Stock:" + clothes.stock.toString(),
+                          //   style: const TextStyle(
+                          //       fontWeight: FontWeight.bold,
+                          //       height: 1.5,
+                          //       color: Colors.grey),
+                          // ),
+                          Row(
+                            children: [
+                              const Text(
+                                "RM ",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    height: 1.5,
+                                    color: Colors.pink),
+                              ),
+                              Text(
+                                clothes.price.toString(),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    height: 1.5,
+                                    color: Colors.pink,
+                                    fontSize: 18),
+                              ),
+                            ],
                           )
                         ],
                       )

@@ -15,17 +15,21 @@ class NewArrival extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children: [
                 Text(
-                  "New Arrival",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  "New Arrival".toUpperCase(),
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: Colors.black,
+                  ),
                 ),
               ],
             ),
           ),
           GetBuilder<ProductController>(builder: (products) {
             return Container(
-              height: 280,
+              height: 300,
               child: ListView.separated(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 scrollDirection: Axis.horizontal,

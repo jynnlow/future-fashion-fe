@@ -26,7 +26,12 @@ class ClothesItemHorizontal extends StatelessWidget {
             Stack(
               children: [
                 Container(
-                  margin: const EdgeInsets.all(8),
+                  margin: const EdgeInsets.only(
+                    bottom: 0,
+                    left: 8,
+                    right: 8,
+                    top: 5,
+                  ),
                   height: 200,
                   width: 200,
                   decoration: BoxDecoration(
@@ -38,15 +43,42 @@ class ClothesItemHorizontal extends StatelessWidget {
                 ),
               ],
             ),
-            Text(
-              clothes.item!,
-              style: const TextStyle(
-                  fontWeight: FontWeight.bold, height: 1.5, fontSize: 17),
-            ),
-            Text(
-              "RM " + clothes.price.toString(),
-              style: const TextStyle(
-                  fontWeight: FontWeight.bold, height: 1.5, color: Colors.pink),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  height: 45,
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  width: 180,
+                  child: Text(
+                    clothes.item!,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                ),
+                Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.only(bottom: 5),
+                      child: const Text(
+                        "RM ",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.pink),
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Text(
+                        clothes.price.toString(),
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.pink,
+                            fontSize: 19),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ],
         ),

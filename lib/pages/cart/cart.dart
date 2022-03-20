@@ -35,12 +35,61 @@ class CartPage extends StatelessWidget {
     }
 
     return GetBuilder<CartController>(builder: (cartController) {
+      var cartList = cartController.getCartList;
       return Scaffold(
-          body: Stack(
-            children: const [
-              CartAppBar(),
-              CartList(),
-            ],
+          body: cartList.isNotEmpty
+              ? Stack(
+                  children: const [
+                    CartList(),
+                  ],
+                )
+              : Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const ImageIcon(
+                            AssetImage("assets/icons/empty-cart.png"),
+                            color: Colors.pink,
+                            size: 50,
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(top: 20),
+                            child: const Text(
+                              "There's no item in your cart.",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+          appBar: AppBar(
+            backgroundColor: Colors.pink,
+            leading: IconButton(
+              icon: const Icon(
+                Icons.arrow_back_ios,
+                color: Colors.white,
+                size: 15,
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            title: const Text(
+              "Your Cart",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 17,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
           bottomNavigationBar: Container(
             height: 100,

@@ -14,26 +14,27 @@ class BestSell extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
+            children: [
               Text(
-                "Popular",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                "best sell".toUpperCase(),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
             ],
           ),
         ),
         GetBuilder<ProductController>(builder: (products) {
           return Container(
-            height: 200,
+            height: 500,
             child: ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               scrollDirection: Axis.vertical,
               itemCount: products.clothesList.isEmpty
                   ? 0
-                  : products.clothesList.length ~/ 2,
+                  : products.clothesList.length,
               itemBuilder: (context, index) => ClothesItemVertical(
-                clothes: products.clothesList[index + 1],
+                clothes: products.clothesList[index],
               ),
             ),
           );

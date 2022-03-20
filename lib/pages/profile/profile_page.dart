@@ -127,7 +127,7 @@ class ProfilePage extends StatelessWidget {
           ),
           actions: [
             Container(
-              margin: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+              margin: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -135,7 +135,7 @@ class ProfilePage extends StatelessWidget {
                     child: const Text("cancel"),
                     style: TextButton.styleFrom(
                         primary: Colors.pink,
-                        side: BorderSide(color: Colors.pink, width: 0.5)),
+                        side: const BorderSide(color: Colors.pink, width: 0.5)),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
@@ -159,27 +159,28 @@ class ProfilePage extends StatelessWidget {
     }
 
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.pink,
-          leading: IconButton(
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.white,
-              size: 15,
-            ),
-            onPressed: () => Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => (HomePage()))),
+      appBar: AppBar(
+        backgroundColor: Colors.pink,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+            size: 15,
           ),
-          title: const Text(
-            "Profile",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 17,
-              fontWeight: FontWeight.bold,
-            ),
+          onPressed: () => Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => (HomePage()))),
+        ),
+        title: const Text(
+          "Profile",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 17,
+            fontWeight: FontWeight.bold,
           ),
         ),
-        body: GetBuilder<UserController>(builder: (userController) {
+      ),
+      body: GetBuilder<UserController>(
+        builder: (userController) {
           return Get.find<UserController>().checkIfUserLoggedIn()
               ? Container(
                   margin: const EdgeInsets.only(left: 20, top: 20),
@@ -323,7 +324,14 @@ class ProfilePage extends StatelessWidget {
                         children: [
                           Container(
                             margin: EdgeInsets.only(bottom: 20),
-                            child: Text("Please log in to view your profile."),
+                            child: const Text(
+                              "Please log in to view your profile.",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                                color: Colors.grey,
+                              ),
+                            ),
                           ),
                           GestureDetector(
                             onTap: () {
@@ -351,6 +359,8 @@ class ProfilePage extends StatelessWidget {
                     ],
                   ),
                 );
-        }));
+        },
+      ),
+    );
   }
 }

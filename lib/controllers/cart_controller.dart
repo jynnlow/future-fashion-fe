@@ -1,7 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:future/data/repository/cart_repo.dart';
 import 'package:future/models/cart_model.dart';
 import 'package:future/models/product_model.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:flutter/material.dart';
 
 class CartController extends GetxController {
   final CartRepo cartRepo;
@@ -10,16 +12,28 @@ class CartController extends GetxController {
   Map<String, CartModel> _cartItems = {};
   Map<String, CartModel> get cartItems => _cartItems;
 
+  int _itemQuantity = 1;
+  int get itemQuantity => _itemQuantity;
+
   /* This is for the cart model that retrieve from the local storage and sharePreference*/
   List<CartModel> storageCartItem = [];
 
+  int checkQuantity(ProductModel product, String sizing) {
+    String _cartId = product.id!.toString() + ':' + sizing;
+    if (_cartItems.containsKey(_cartId)) {
+      return _cartItems[_cartId]!.quantity!;
+    }
+    return -1;
+  }
+
   void addItem(ProductModel product, int quantity, String sizing) {
-    var totalQuantity = 0;
+    _itemQuantity = 0;
     String _cartId = product.id!.toString() + ':' + sizing;
 
     if (_cartItems.containsKey(_cartId)) {
       _cartItems.update(_cartId, (value) {
-        totalQuantity = value.quantity! + quantity;
+        _itemQuantity = value.quantity! + quantity;
+        update();
         return CartModel(
           id: _cartId,
           item: value.item,
@@ -31,10 +45,6 @@ class CartController extends GetxController {
           product: product,
         );
       });
-
-      if (totalQuantity <= 0) {
-        _cartItems.remove(_cartId);
-      }
     } else {
       if (quantity > 0) {
         _cartItems.putIfAbsent(
@@ -56,6 +66,14 @@ class CartController extends GetxController {
     }
     // add the cart model to the local storage - in cart repo
     cartRepo.addToCartList(getCartList);
+    update();
+  }
+
+  void removeItemFromCart(ProductModel product, String sizing) {
+    String _cartId = product.id!.toString() + ':' + sizing;
+    _cartItems.remove(_cartId);
+    cartRepo.addToCartList(getCartList);
+
     update();
   }
 

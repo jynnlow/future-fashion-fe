@@ -12,99 +12,109 @@ class FavouriteList extends StatelessWidget {
       var favouriteList = favourite.favouriteList;
       return Stack(
         children: [
-          favouriteList.isNotEmpty
-              ? Container(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  height: 1000,
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    scrollDirection: Axis.vertical,
-                    itemCount: favouriteList.length,
-                    itemBuilder: (context, index) => Card(
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 2),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: GestureDetector(
-                        onTap: (() {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  DetailPage(clothes: favouriteList[index])));
-                        }),
-                        child: Stack(
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            height: 1000,
+            child: ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              scrollDirection: Axis.vertical,
+              itemCount: favouriteList.length,
+              itemBuilder: (context, index) => Card(
+                margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: GestureDetector(
+                  onTap: (() {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) =>
+                            DetailPage(clothes: favouriteList[index])));
+                  }),
+                  child: Stack(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(5),
+                        child: Row(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.all(5),
-                              child: Row(
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(15),
-                                    child: Image.asset(
-                                      favouriteList[index].pictures!.first,
-                                      width: 90,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 10),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        favouriteList[index].item!,
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            height: 1.5,
-                                            fontSize: 15),
-                                      ),
-                                      Text(
-                                        "Stock:" +
-                                            favouriteList[index]
-                                                .stock
-                                                .toString(),
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            height: 1.5,
-                                            color: Colors.grey),
-                                      ),
-                                      Text(
-                                        "RM " +
-                                            favouriteList[index]
-                                                .price
-                                                .toString(),
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            height: 1.5,
-                                            color: Colors.pink),
-                                      )
-                                    ],
-                                  )
-                                ],
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(15),
+                              child: Image.asset(
+                                favouriteList[index].pictures!.first,
+                                width: 100,
                               ),
                             ),
-                            Positioned(
-                              top: 0,
-                              right: 0,
-                              child: Container(
-                                padding: const EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                    color: Colors.white.withOpacity(0.9),
-                                    shape: BoxShape.circle),
-                                child: const Icon(
-                                  Icons.favorite,
-                                  color: Colors.red,
-                                  size: 15,
+                            const SizedBox(width: 10),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  favouriteList[index].item!,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      height: 1.5,
+                                      fontSize: 16),
                                 ),
-                              ),
+                                // Text(
+                                //   "Stock:" +
+                                //       favouriteList[index].stock.toString(),
+                                //   style: const TextStyle(
+                                //       fontWeight: FontWeight.bold,
+                                //       height: 1.5,
+                                //       color: Colors.grey),
+                                // ),
+                                // Text(
+                                //   "RM " + favouriteList[index].price.toString(),
+                                //   style: const TextStyle(
+                                //       fontWeight: FontWeight.bold,
+                                //       height: 1.5,
+                                //       color: Colors.pink),
+                                // ),
+                                Row(
+                                  children: [
+                                    const Text(
+                                      "RM ",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          height: 1.5,
+                                          color: Colors.pink),
+                                    ),
+                                    Text(
+                                      favouriteList[index].price.toString(),
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          height: 1.5,
+                                          color: Colors.pink,
+                                          fontSize: 18),
+                                    ),
+                                  ],
+                                )
+                              ],
                             )
                           ],
                         ),
                       ),
-                    ),
+                      Positioned(
+                        top: 0,
+                        right: 0,
+                        child: Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.9),
+                              shape: BoxShape.circle),
+                          child: const Icon(
+                            Icons.favorite,
+                            color: Colors.red,
+                            size: 15,
+                          ),
+                        ),
+                      )
+                    ],
                   ),
-                )
-              : Container(),
+                ),
+              ),
+            ),
+          )
         ],
       );
     });

@@ -19,19 +19,21 @@ class DetailPage extends StatelessWidget {
     Get.find<ProductController>().initProduct(Get.find<CartController>());
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            DetailAppBar(
-              clothes: clothes,
-            ),
-            ClothesInfo(
-              clothes: clothes,
-            ),
-            SizeChart(clothes: clothes),
-            const SizeList(),
-          ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              DetailAppBar(
+                clothes: clothes,
+              ),
+              ClothesInfo(
+                clothes: clothes,
+              ),
+              SizeChart(clothes: clothes),
+              const SizeList(),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: GetBuilder<ProductController>(
@@ -52,13 +54,25 @@ class DetailPage extends StatelessWidget {
                           'Price',
                           style: TextStyle(fontSize: 16, color: Colors.grey),
                         ),
-                        Text(
-                          'RM ${clothes.price}',
-                          style: const TextStyle(
-                              height: 1.5,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Colors.pink),
+                        Row(
+                          children: [
+                            const Text(
+                              'RM ',
+                              style: TextStyle(
+                                  height: 1.5,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                  color: Colors.pink),
+                            ),
+                            Text(
+                              clothes.price.toString(),
+                              style: const TextStyle(
+                                  height: 1.5,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Colors.pink),
+                            ),
+                          ],
                         )
                       ],
                     ),
@@ -128,7 +142,7 @@ class DetailPage extends StatelessWidget {
                               child: const Text(
                                 'Add to Cart',
                                 style: TextStyle(
-                                    fontSize: 18, color: Colors.white),
+                                    fontSize: 16, color: Colors.white),
                               ),
                             ),
                             const SizedBox(

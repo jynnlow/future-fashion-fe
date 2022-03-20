@@ -20,6 +20,7 @@ class _DetailAppBarState extends State<DetailAppBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.only(bottom: 15),
       child: Stack(
         children: [
           Container(
@@ -27,6 +28,7 @@ class _DetailAppBarState extends State<DetailAppBar> {
               carouselController: _controller,
               options: CarouselOptions(
                   height: 450,
+                  enableInfiniteScroll: true,
                   viewportFraction: 1,
                   onPageChanged: (index, reason) {
                     setState(() {
@@ -50,7 +52,7 @@ class _DetailAppBarState extends State<DetailAppBar> {
             ),
           ),
           Positioned(
-            bottom: 30,
+            bottom: 2,
             left: 180,
             child: Row(
               children: widget.clothes.pictures!
@@ -65,8 +67,8 @@ class _DetailAppBarState extends State<DetailAppBar> {
                         height: 10,
                         decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Colors.white.withOpacity(
-                                _currentPage == entry.key ? 0.9 : 0.4)),
+                            color: Colors.grey.withOpacity(
+                                _currentPage == entry.key ? 0.4 : 0.3)),
                       ),
                     ),
                   )
@@ -90,16 +92,16 @@ class _DetailAppBarState extends State<DetailAppBar> {
                     margin: EdgeInsets.only(
                         top: MediaQuery.of(context).padding.top),
                     padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.9),
+                    decoration: const BoxDecoration(
+                      color: Colors.pink,
                       shape: BoxShape.circle,
                     ),
                     child: const Padding(
-                      padding: EdgeInsets.only(left: 10),
+                      padding: EdgeInsets.only(left: 8),
                       child: Icon(
                         Icons.arrow_back_ios,
-                        color: Colors.grey,
-                        size: 20,
+                        color: Colors.white,
+                        size: 19,
                       ),
                     ),
                   ),
@@ -107,7 +109,6 @@ class _DetailAppBarState extends State<DetailAppBar> {
                 GetBuilder<ProductController>(builder: (productController) {
                   return GestureDetector(
                     onTap: () {
-                      print(widget.clothes.id);
                       var selectedProduct = productController.getARModel(
                           widget.clothes.id!, productController.sizing);
 
@@ -125,15 +126,15 @@ class _DetailAppBarState extends State<DetailAppBar> {
                     child: Container(
                         margin: EdgeInsets.only(
                             top: MediaQuery.of(context).padding.top),
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.9),
+                        padding: const EdgeInsets.all(10),
+                        decoration: const BoxDecoration(
+                          color: Colors.pink,
                           shape: BoxShape.circle,
                         ),
                         child: const Icon(
                           Icons.camera_alt_outlined,
-                          color: Colors.grey,
-                          size: 20,
+                          color: Colors.white,
+                          size: 21,
                         )),
                   );
                 })

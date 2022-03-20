@@ -19,20 +19,18 @@ class _SearchInputState extends State<SearchInput> {
               child: TextField(
                 cursorColor: Colors.grey,
                 decoration: InputDecoration(
-                    fillColor: Colors.white,
-                    filled: true,
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide.none),
-                    hintText: 'Search',
-                    hintStyle: const TextStyle(
-                      color: Colors.grey,
-                      fontSize: 18,
-                    ),
-                    prefixIcon: Container(
-                      child: const Icon(Icons.search),
-                      width: 20,
-                    )),
+                  fillColor: Colors.white,
+                  filled: true,
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide.none),
+                  hintText: 'Search',
+                  hintStyle: TextStyle(
+                    color: Colors.grey.withOpacity(0.5),
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ),
             Container(
@@ -43,28 +41,28 @@ class _SearchInputState extends State<SearchInput> {
                 borderRadius: BorderRadius.circular(15),
               ),
               child: const Icon(
-                Icons.list,
+                Icons.search,
                 color: Colors.white,
               ),
             )
           ],
         ),
-        Row(
-          children: tagsList
-              .map((e) => Container(
-                    padding: const EdgeInsets.all(10),
-                    margin: const EdgeInsets.only(top: 10, right: 10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.pink.withOpacity(0.5),
-                    ),
-                    child: Text(
-                      e,
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                  ))
-              .toList(),
-        ),
+        // Row(
+        //   children: tagsList
+        //       .map((e) => Container(
+        //             padding: const EdgeInsets.all(10),
+        //             margin: const EdgeInsets.only(top: 10, right: 10),
+        //             decoration: BoxDecoration(
+        //               borderRadius: BorderRadius.circular(10),
+        //               color: Colors.pink.withOpacity(0.8),
+        //             ),
+        //             child: Text(
+        //               e,
+        //               style: const TextStyle(color: Colors.white),
+        //             ),
+        //           ))
+        //       .toList(),
+        // ),
       ]),
     );
   }

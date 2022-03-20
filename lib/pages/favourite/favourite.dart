@@ -11,15 +11,50 @@ class FavouritePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              FavouriteList(),
-            ],
-          ),
-        ),
+      body: GetBuilder<FavouriteController>(
+        builder: (favouriteController) {
+          var favouriteList = favouriteController.favouriteList;
+          return favouriteList.isNotEmpty
+              ? SafeArea(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        FavouriteList(),
+                      ],
+                    ),
+                  ),
+                )
+              : Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const ImageIcon(
+                            AssetImage("assets/icons/broken-heart.png"),
+                            color: Colors.pink,
+                            size: 50,
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(top: 20),
+                            child: const Text(
+                              "There's no item in your favourite list.",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                );
+        },
       ),
       appBar: AppBar(
         leading: IconButton(

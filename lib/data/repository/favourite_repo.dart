@@ -23,7 +23,6 @@ class FavouriteRepo {
     sharedPreferences.setStringList(
         Constants.FAVOURITE_LIST, favouriteListJson);
     getFavouriteList();
-    // print(sharedPreferences.getStringList(Constants.FAVOURITE_LIST));
   }
 
   List<ProductModel> getFavouriteList() {

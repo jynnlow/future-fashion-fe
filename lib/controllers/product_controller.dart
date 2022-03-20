@@ -27,6 +27,7 @@ class ProductController extends GetxController {
 
   Future<void> getProductList() async {
     Response response = await productRepo.getProductList();
+
     if (response.body['status'] == 'FAIL') {
       return;
     }
@@ -83,7 +84,7 @@ class ProductController extends GetxController {
   void addItemToCart(ProductModel product) {
     if (_quantity > 0) {
       _cartController.addItem(product, _quantity, _sizing);
-      _quantity = 0;
+      _quantity = 1;
       Get.snackbar(
         "Success",
         "Your item is added to cart succesfully",
