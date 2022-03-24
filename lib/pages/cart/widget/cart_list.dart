@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:future/base/show_custom_snack_bar.dart';
 import 'package:future/controllers/cart_controller.dart';
@@ -103,13 +105,20 @@ class CartList extends StatelessWidget {
                           width: 100,
                           height: 100,
                           margin: const EdgeInsets.only(bottom: 8),
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  fit: BoxFit.fitHeight,
-                                  image: AssetImage(cart.getCartList[index]
-                                      .product!.pictures!.first)),
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.white),
+                          child: Image.memory(
+                            base64Decode(cart
+                                .getCartList[index].product!.pictures!.first
+                                .split('data:image/png;base64,')[1]),
+                            width: 100,
+                            gaplessPlayback: true,
+                          ),
+                          // decoration: BoxDecoration(
+                          //     image: DecorationImage(
+                          //         fit: BoxFit.fitHeight,
+                          //         image: AssetImage(cart.getCartList[index]
+                          //             .product!.pictures!.first)),
+                          //     borderRadius: BorderRadius.circular(20),
+                          //     color: Colors.white),
                         ),
                       ),
                       const SizedBox(
@@ -126,7 +135,7 @@ class CartList extends StatelessWidget {
                                 cartList[index].item!,
                                 style: const TextStyle(
                                   color: Colors.black,
-                                  fontSize: 16,
+                                  fontSize: 15,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -134,7 +143,7 @@ class CartList extends StatelessWidget {
                                 "Size: " + cartList[index].sizing!,
                                 style: const TextStyle(
                                   color: Colors.grey,
-                                  fontSize: 15,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -148,7 +157,7 @@ class CartList extends StatelessWidget {
                                         'RM ',
                                         style: TextStyle(
                                           color: Colors.pink,
-                                          fontSize: 13,
+                                          fontSize: 12,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -205,7 +214,7 @@ class CartList extends StatelessWidget {
                                           cartList[index].quantity.toString(),
                                           style: const TextStyle(
                                               height: 1,
-                                              fontSize: 18,
+                                              fontSize: 17,
                                               color: Colors.pink),
                                         ),
                                         const SizedBox(

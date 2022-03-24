@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:arkit_plugin/arkit_plugin.dart';
 import 'package:future/ar/widget/ar_fitting_room.dart';
+import 'package:future/controllers/product_controller.dart';
 import 'package:future/pages/home/home_page.dart';
+import 'package:get/get.dart';
 import 'package:vector_math/vector_math_64.dart' as vector;
 
 class FittingRoomPage extends StatelessWidget {
@@ -41,10 +43,18 @@ class FittingRoomPage extends StatelessWidget {
           ),
         ),
       ),
-      body: ARFittingRoom(
-        model: model,
-        sizingScale: sizingScale,
-        positionAdjustment: positionAdjustment,
+      body: GetBuilder<ProductController>(
+        builder: (productController) {
+          return productController.arModelExist == true
+              ? ARFittingRoom(
+                  model: model,
+                  sizingScale: sizingScale,
+                  positionAdjustment: positionAdjustment,
+                )
+              : const Center(
+                  child: Text("3d model is on pending."),
+                );
+        },
       ),
     );
   }

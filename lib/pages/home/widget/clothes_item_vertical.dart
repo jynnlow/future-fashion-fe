@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:future/models/product_model.dart';
 import 'package:future/pages/detail/detail.dart';
@@ -28,9 +30,11 @@ class ClothesItemVertical extends StatelessWidget {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(15),
-                        child: Image.asset(
-                          clothes.pictures!.first,
+                        child: Image.memory(
+                          base64Decode(clothes.pictures!.first
+                              .split('data:image/png;base64,')[1]),
                           width: 100,
+                          gaplessPlayback: true,
                         ),
                       ),
                       const SizedBox(width: 10),
@@ -66,7 +70,7 @@ class ClothesItemVertical extends StatelessWidget {
                                     fontWeight: FontWeight.bold,
                                     height: 1.5,
                                     color: Colors.pink,
-                                    fontSize: 18),
+                                    fontSize: 17),
                               ),
                             ],
                           )

@@ -34,14 +34,14 @@ class FavouritePage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const ImageIcon(
-                            AssetImage("assets/icons/broken-heart.png"),
+                            AssetImage("assets/icons/heart.png"),
                             color: Colors.pink,
                             size: 50,
                           ),
                           Container(
                             margin: EdgeInsets.only(top: 20),
                             child: const Text(
-                              "There's no item in your favourite list.",
+                              "Add item to your favourite list now!",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 14,

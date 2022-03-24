@@ -38,11 +38,11 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.white,
     ));
-    return GetMaterialApp(
+    return const GetMaterialApp(
       title: 'Future Fashion App',
       debugShowCheckedModeBanner: false,
-      // home: SplashScreen(),
-      home: HomePage(),
+      home: SplashScreen(),
+      // home: HomePage(),
     );
   }
 }

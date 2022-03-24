@@ -30,10 +30,17 @@ class SelectedDetail {
   SelectedDetail({required this.modelURL, required this.size});
 }
 
+bool checkIfARModelExist(int productID) {
+  if (productsARDetails[productID] != null) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 SelectedDetail getARDetailsByProductID(int productID, String sizing) {
   var product = productsARDetails[productID];
   ARSizeMapping size;
-
   switch (sizing) {
     case 'XS':
       {
@@ -67,7 +74,7 @@ SelectedDetail getARDetailsByProductID(int productID, String sizing) {
 
     default:
       {
-        size = product!.m;
+        size = product!.xl;
       }
       break;
   }

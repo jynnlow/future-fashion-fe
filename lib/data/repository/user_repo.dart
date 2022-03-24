@@ -36,8 +36,6 @@ class UserRepo {
     String userJson = "";
     userJson = jsonEncode(userModel);
     sharedPreferences.setString(Constants.USER_PROFILE, userJson);
-    print("Profile in local storage" +
-        sharedPreferences.getString(Constants.USER_PROFILE)!);
     // getPersonalInfoFromSP();
   }
 

@@ -44,10 +44,16 @@ class FavouriteController extends GetxController {
     favouriteRepo.addToFavouriteList(favouriteList);
   }
 
+  void removeItemFromFavouriteList(int index) {
+    _favouriteList.removeAt(index);
+    favouriteRepo.addToFavouriteList(_favouriteList);
+
+    update();
+  }
+
   //get favourite list when restart
   List<ProductModel> getFavouriteList() {
     _favouriteList = favouriteRepo.getFavouriteList();
-    print(_favouriteList.length);
     return _favouriteList;
   }
 }

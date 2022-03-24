@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:future/models/cart_model.dart';
 import 'package:future/pages/detail/detail.dart';
@@ -43,15 +45,23 @@ class OrderDetailsPage extends StatelessWidget {
                                 width: 100,
                                 height: 100,
                                 margin: const EdgeInsets.all(5),
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        fit: BoxFit.fitHeight,
-                                        image: AssetImage(orderList[index]
-                                            .product!
-                                            .pictures!
-                                            .first)),
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: Colors.white),
+                                child: Image.memory(
+                                  base64Decode(orderList[index]
+                                      .product!
+                                      .pictures!
+                                      .first
+                                      .split('data:image/png;base64,')[1]),
+                                  gaplessPlayback: true,
+                                ),
+                                // decoration: BoxDecoration(
+                                //     image: DecorationImage(
+                                //         fit: BoxFit.fitHeight,
+                                //         image: AssetImage(orderList[index]
+                                //             .product!
+                                //             .pictures!
+                                //             .first)),
+                                //     borderRadius: BorderRadius.circular(20),
+                                //     color: Colors.white),
                               ),
                             ),
                             const SizedBox(

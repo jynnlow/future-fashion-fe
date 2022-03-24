@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:future/ar/fitting_room_page.dart';
 import 'package:future/controllers/product_controller.dart';
@@ -44,7 +46,12 @@ class _DetailAppBarState extends State<DetailAppBar> {
                               left: 13),
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                                  image: AssetImage(e), fit: BoxFit.fitHeight),
+                                image: MemoryImage(
+                                  base64Decode(
+                                      e.split('data:image/png;base64,')[1]),
+                                ),
+                                fit: BoxFit.fitHeight,
+                              ),
                               borderRadius: BorderRadius.circular(25)),
                         ),
                       ))
@@ -109,19 +116,32 @@ class _DetailAppBarState extends State<DetailAppBar> {
                 GetBuilder<ProductController>(builder: (productController) {
                   return GestureDetector(
                     onTap: () {
-                      var selectedProduct = productController.getARModel(
-                          widget.clothes.id!, productController.sizing);
-
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => FittingRoomPage(
-                            model: selectedProduct.modelURL,
-                            sizingScale: selectedProduct.size.sizingScale,
-                            positionAdjustment:
-                                selectedProduct.size.positionAdjustment,
+                      if (productController.arModelExists(widget.clothes.id!) !=
+                          true) {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => FittingRoomPage(
+                              model: '',
+                              sizingScale: 0.0,
+                              positionAdjustment: 0.0,
+                            ),
                           ),
-                        ),
-                      );
+                        );
+                      } else {
+                        var selectedProduct = productController.getARModel(
+                            widget.clothes.id!, productController.sizing);
+
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => FittingRoomPage(
+                              model: selectedProduct.modelURL,
+                              sizingScale: selectedProduct.size.sizingScale,
+                              positionAdjustment:
+                                  selectedProduct.size.positionAdjustment,
+                            ),
+                          ),
+                        );
+                      }
                     },
                     child: Container(
                         margin: EdgeInsets.only(

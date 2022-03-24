@@ -91,7 +91,34 @@ class OrderList extends StatelessWidget {
                   ),
                 )
               : Container(
-                  child: Text("no item"),
+                  height: 733,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const ImageIcon(
+                            AssetImage("assets/icons/no-order.png"),
+                            color: Colors.pink,
+                            size: 50,
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(top: 20),
+                            child: const Text(
+                              "Drop your order now!",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
         ],
       );

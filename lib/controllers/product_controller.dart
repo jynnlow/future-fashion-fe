@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:future/controllers/cart_controller.dart';
 import 'package:future/data/repository/product_repo.dart';
@@ -25,6 +27,9 @@ class ProductController extends GetxController {
   int _inCartItem = 0;
   int get inCartItem => _inCartItem + _quantity;
 
+  bool _arModelExist = false;
+  bool get arModelExist => _arModelExist;
+
   Future<void> getProductList() async {
     Response response = await productRepo.getProductList();
 
@@ -34,6 +39,7 @@ class ProductController extends GetxController {
 
     List<ProductModel> products =
         Product.fromJson(response.body['details']).products;
+
     _clothesList.clear();
     _clothesList.addAll(products);
     update();
@@ -45,6 +51,11 @@ class ProductController extends GetxController {
 
   SelectedDetail getARModel(int productID, String sizing) {
     return getARDetailsByProductID(productID, sizing);
+  }
+
+  arModelExists(int productID) {
+    _arModelExist = checkIfARModelExist(productID);
+    update();
   }
 
   void setQuantity(bool isIncrement) {
@@ -103,7 +114,6 @@ class ProductController extends GetxController {
   }
 
   int get totalItems {
-    // update();
     return _cartController.totalItems;
   }
 

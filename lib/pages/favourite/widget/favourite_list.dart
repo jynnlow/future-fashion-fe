@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:future/controllers/favourite_controller.dart';
 import 'package:future/pages/detail/detail.dart';
+import 'package:future/pages/favourite/widget/slidable_widget.dart';
 import 'package:get/get.dart';
 
 class FavouriteList extends StatelessWidget {
@@ -13,35 +16,38 @@ class FavouriteList extends StatelessWidget {
       return Stack(
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(vertical: 10),
             height: 1000,
             child: ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               scrollDirection: Axis.vertical,
               itemCount: favouriteList.length,
-              itemBuilder: (context, index) => Card(
-                margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: GestureDetector(
-                  onTap: (() {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>
-                            DetailPage(clothes: favouriteList[index])));
-                  }),
-                  child: Stack(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(5),
-                        child: Row(
+              itemBuilder: (context, index) => SlidableWidget(
+                index: index,
+                child: Container(
+                  margin: const EdgeInsets.only(top: 10, bottom: 10, right: 20),
+                  // shape: RoundedRectangleBorder(
+                  //   borderRadius: BorderRadius.circular(15),
+                  // ),
+                  child: GestureDetector(
+                    onTap: (() {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) =>
+                              DetailPage(clothes: favouriteList[index])));
+                    }),
+                    child: Stack(
+                      children: [
+                        Row(
                           children: [
                             ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
-                              child: Image.asset(
-                                favouriteList[index].pictures!.first,
+                              // borderRadius: BorderRadius.(15),
+                              child: Image.memory(
+                                base64Decode(favouriteList[index]
+                                    .pictures!
+                                    .first
+                                    .split('data:image/png;base64,')[1]),
                                 width: 100,
+                                gaplessPlayback: true,
                               ),
                             ),
                             const SizedBox(width: 10),
@@ -53,7 +59,7 @@ class FavouriteList extends StatelessWidget {
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       height: 1.5,
-                                      fontSize: 16),
+                                      fontSize: 15),
                                 ),
                                 // Text(
                                 //   "Stock:" +
@@ -85,31 +91,31 @@ class FavouriteList extends StatelessWidget {
                                           fontWeight: FontWeight.bold,
                                           height: 1.5,
                                           color: Colors.pink,
-                                          fontSize: 18),
+                                          fontSize: 16),
                                     ),
                                   ],
                                 )
                               ],
-                            )
+                            ),
                           ],
                         ),
-                      ),
-                      Positioned(
-                        top: 0,
-                        right: 0,
-                        child: Container(
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.9),
-                              shape: BoxShape.circle),
-                          child: const Icon(
-                            Icons.favorite,
-                            color: Colors.red,
-                            size: 15,
+                        Positioned(
+                          top: 15,
+                          right: 0,
+                          child: Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                                color: Colors.white.withOpacity(0.9),
+                                shape: BoxShape.circle),
+                            child: const Icon(
+                              Icons.favorite,
+                              color: Colors.red,
+                              size: 15,
+                            ),
                           ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
