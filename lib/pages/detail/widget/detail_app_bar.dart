@@ -116,32 +116,28 @@ class _DetailAppBarState extends State<DetailAppBar> {
                 GetBuilder<ProductController>(builder: (productController) {
                   return GestureDetector(
                     onTap: () {
-                      if (productController.arModelExists(widget.clothes.id!) !=
-                          true) {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => FittingRoomPage(
-                              model: '',
-                              sizingScale: 0.0,
-                              positionAdjustment: 0.0,
-                            ),
-                          ),
+                      var clothesID = widget.clothes.id!;
+                      if (!productController.arModelExist(clothesID)) {
+                        Get.snackbar(
+                          "Coming Soon",
+                          "This clothes has yet to have AR view, please try again later.",
+                          backgroundColor: Colors.black,
+                          colorText: Colors.white,
                         );
-                      } else {
-                        var selectedProduct = productController.getARModel(
-                            widget.clothes.id!, productController.sizing);
-
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => FittingRoomPage(
-                              model: selectedProduct.modelURL,
-                              sizingScale: selectedProduct.size.sizingScale,
-                              positionAdjustment:
-                                  selectedProduct.size.positionAdjustment,
-                            ),
-                          ),
-                        );
+                        return;
                       }
+                      var selectedProduct = productController.getARModel(
+                          clothesID, productController.sizing);
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => FittingRoomPage(
+                            model: selectedProduct.modelURL,
+                            sizingScale: selectedProduct.size.sizingScale,
+                            positionAdjustment:
+                                selectedProduct.size.positionAdjustment,
+                          ),
+                        ),
+                      );
                     },
                     child: Container(
                         margin: EdgeInsets.only(

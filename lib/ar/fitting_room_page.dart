@@ -43,18 +43,22 @@ class FittingRoomPage extends StatelessWidget {
           ),
         ),
       ),
-      body: GetBuilder<ProductController>(
-        builder: (productController) {
-          return productController.arModelExist == true
-              ? ARFittingRoom(
-                  model: model,
-                  sizingScale: sizingScale,
-                  positionAdjustment: positionAdjustment,
-                )
-              : const Center(
-                  child: Text("3d model is on pending."),
-                );
-        },
+      // body: GetBuilder<ProductController>(
+      //   builder: (productController) {
+      //     return productController.arModelExist == true
+      //         ? ARFittingRoom(
+      //             model: model,
+      //             sizingScale: sizingScale,
+      //             positionAdjustment: positionAdjustment,
+      //           )
+      //         : const Center(
+      //             child: Text("3d model is on pending."),
+      //           );
+      //   },
+      body: ARFittingRoom(
+        model: model,
+        sizingScale: sizingScale,
+        positionAdjustment: positionAdjustment,
       ),
     );
   }

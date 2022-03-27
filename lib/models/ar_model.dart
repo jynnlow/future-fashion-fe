@@ -33,9 +33,8 @@ class SelectedDetail {
 bool checkIfARModelExist(int productID) {
   if (productsARDetails[productID] != null) {
     return true;
-  } else {
-    return false;
   }
+  return false;
 }
 
 SelectedDetail getARDetailsByProductID(int productID, String sizing) {

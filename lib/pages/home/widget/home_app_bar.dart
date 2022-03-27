@@ -17,7 +17,7 @@ class HomeAppBar extends StatelessWidget {
             RichText(
                 text: const TextSpan(children: [
               TextSpan(
-                text: 'Howdy, What are you \nlooking for? ',
+                text: 'Howdy, What are you looking for? ',
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: 22,

@@ -27,12 +27,8 @@ class ProductController extends GetxController {
   int _inCartItem = 0;
   int get inCartItem => _inCartItem + _quantity;
 
-  bool _arModelExist = false;
-  bool get arModelExist => _arModelExist;
-
   Future<void> getProductList() async {
     Response response = await productRepo.getProductList();
-
     if (response.body['status'] == 'FAIL') {
       return;
     }
@@ -53,9 +49,9 @@ class ProductController extends GetxController {
     return getARDetailsByProductID(productID, sizing);
   }
 
-  arModelExists(int productID) {
-    _arModelExist = checkIfARModelExist(productID);
-    update();
+  bool arModelExist(int productID) {
+    print(productID);
+    return checkIfARModelExist(productID);
   }
 
   void setQuantity(bool isIncrement) {
