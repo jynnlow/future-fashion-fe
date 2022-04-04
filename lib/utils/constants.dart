@@ -2,7 +2,10 @@ class Constants {
   static const String APP_NAME = "Future Fashion";
 
   //actual device
-  static const String BASE_URL = "http://192.168.100.31:8080";
+  //kw house
+  // static const String BASE_URL = "http://192.168.100.31:8080";
+  //own house
+  static const String BASE_URL = "http://192.168.1.100:8080";
   //simulator
   // static const String BASE_URL = "http://localhost:8080";
 
